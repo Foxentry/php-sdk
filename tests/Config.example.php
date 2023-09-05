@@ -14,5 +14,5 @@ class Config
      *
      * @var string
      */
-    const API_KEY = '76yze20ziLefdsZLGcLz';
+    const API_KEY = '';
 }
