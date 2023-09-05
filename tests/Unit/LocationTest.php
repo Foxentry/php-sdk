@@ -45,8 +45,8 @@ class LocationTest extends TestCase
 
         // Perform location validation.
         $response = $this->api->location->validate($query);
-        $result = $response->result();
-        $resultCorrected = $response->resultCorrected();
+        $result = $response->getResult();
+        $resultCorrected = $response->getResultCorrected();
 
         // Assertions.
         $this->assertEquals("invalidWithCorrection", $result->proposal);
@@ -67,11 +67,11 @@ class LocationTest extends TestCase
 
         // Perform location search.
         $response = $this->api->location->search($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertGreaterThan(0, $response->response()->resultsCount);
+        $this->assertGreaterThan(0, $response->getResponse()->resultsCount);
         $this->assertNotEmpty($result[0]->data);
     }
 
@@ -88,7 +88,7 @@ class LocationTest extends TestCase
 
         // Perform location retrieval.
         $response = $this->api->location->setOptions(["idType" => "external"])->get($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
@@ -108,11 +108,11 @@ class LocationTest extends TestCase
 
         // Perform location localization.
         $response = $this->api->location->localize($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertGreaterThan(0, $response->response()->resultsCount);
+        $this->assertGreaterThan(0, $response->getResponse()->resultsCount);
         $this->assertNotEmpty($result[0]->data);
     }
 }

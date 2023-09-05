@@ -1,8 +1,8 @@
-# Foxentry PHP API Client Library Documentation
+# Foxentry PHP API Client library Documentation
 
 ## Introduction
 
-The Foxentry PHP API Client Library enables seamless integration of various data validation features into your applications. Whether you require validation for phone numbers, addresses, emails, or other data types, this library offers a user-friendly interface to interact with the Foxentry API. For more comprehensive information about Foxentry, please visit [foxentry.com](https://foxentry.com/)
+The Foxentry PHP API Client library enables seamless integration of various data validation features into your applications. Whether you require validation for phone numbers, addresses, emails, or other data types, this library offers a user-friendly interface to interact with the Foxentry API. For more comprehensive information about Foxentry, please visit [foxentry.com](https://foxentry.com/)
 
 If you have questions or need further assistance, reach out to us at [info@foxentry.cz](mailto:info@foxentry.cz)
 
@@ -15,7 +15,7 @@ To use the Foxentry API client, you need the following:
 
 ## Installation
 
-To begin using the Foxentry PHP API Client Library, follow these installation steps:
+To begin using the Foxentry PHP API Client library, follow these installation steps:
 
 ### With Composer
 
@@ -39,7 +39,7 @@ include_once "foxentry-php-client/vendor/autoload.php"
 
 ## Getting started
 
-To initiate the usage of the Foxentry PHP API Client Library, create an instance of the API client with your API key. This instance allows you to access various resources (e.g., phone, location, email, etc.) and call their methods to access the Foxentry API's functionalities.
+To initiate the usage of the Foxentry PHP API Client library, create an instance of the API client with your API key. This instance allows you to access various resources (e.g., phone, location, email, etc.) and call their methods to access the Foxentry API's functionalities.
 
 ### Full example of e-mail validation
 ```php  
@@ -58,7 +58,8 @@ $api = new ApiClient("[YOUR API KEY]");
 // Set custom parameters for the email validation request.
 $response = $api->email
     ->setCustomId("CustomRequestID") // Sets a custom request ID.
-    ->setClient("127.0.0.1", "CZ") // Sets the client IP address and country code.
+    ->setClientIP("127.0.0.1") // Sets the client IP address.
+    ->setClientCountry("CZ") // Sets the client country code.
     ->setOptions([
         "validationType" => "basic",// Set the validation type to "basic".
         "acceptDisposableEmails" => false // Disables acceptance of disposable emails.
@@ -66,7 +67,7 @@ $response = $api->email
     ->validate("info@foxentry.cz"); // Sends request to Foxentry API and performs email validation.
 
 // Displays the result of email validation.
-echo $response->result()->isValid ? "E-mail is Valid" : "E-mail is invalid";
+echo $response->getResult()->isValid ? "E-mail is Valid" : "E-mail is invalid";
 ```  
 
 ## APIClient class
@@ -86,31 +87,33 @@ To access various resources from this class, simply provide the resource name, a
 
 The API client provides various resources, each with its own related methods listed below. You can click on the methods to navigate to the [API documentation](https://foxentry.dev/), where you can explore all request inputs, options, and more.
 
-| Resource | Methods|
-| -------- | --------- |
-| Company | [validate](https://foxentry.dev/reference/validatecompanydata)<br>[search](https://foxentry.dev/reference/companysearch)<br>[get](https://foxentry.dev/reference/getcompanydata) |
-| Email   | [validate](https://foxentry.dev/reference/validateemail)<br>[search](https://foxentry.dev/reference/emailsearch) |
+| Resource | Methods                                                                                                                                                                                                                                               |
+| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Company | [validate](https://foxentry.dev/reference/validatecompanydata)<br>[search](https://foxentry.dev/reference/companysearch)<br>[get](https://foxentry.dev/reference/getcompanydata)                                                                      |
+| Email   | [validate](https://foxentry.dev/reference/validateemail)<br>[search](https://foxentry.dev/reference/emailsearch)                                                                                                                                      |
 | Location | [validate](https://foxentry.dev/reference/locationvalidation)<br>[search](https://foxentry.dev/reference/locationsearch)<br>[get](https://foxentry.dev/reference/locationget)<br> [localization](https://foxentry.dev/reference/locationlocalization) |
-| Name   | [validate](https://foxentry.dev/reference/namevalidation) |
-| Phone   | [validate](https://foxentry.dev/reference/validatephonenumber) |
+| Name   | [validate](https://foxentry.dev/reference/namevalidation)                                                                                                                                                                                             |
+| Phone   | [validate](https://foxentry.dev/reference/validatephonenumber)                                                                                                                                                                                        |
 
 In each method, you **must specify query parameters** according to the specific endpoint in the [API documentation](https://foxentry.dev/).
 
-To specify options, use the method **setOptions([])**, and to specify the client, use the method **setClient($ip, $country, $location)**.
+To specify options, use the method **setOptions([])**
+
+To specify the client, use the methods **setClientIP($ip)**, **setClientCountry($country)** or **setClientLocation($lat, $lon)**.
 
 ## Response class
 
 Response class is returned with every request providing methods below:
 
-| Method | Parameters | Description|
-| -------- | --------- |--------- |
-| status | `None` | Returns status code of the response |
-| response | `None` | Returns full response from the API |
-| request | `None` | Returns informations about the sent request |
-| result | `None` | Returns result object from the response |
-| resultCorrected | `None` | Returns corrected results from the response |
-| suggestions | `None` | Returns suggestions from the response |
-| errors | `None` | Returns errors from the response |
+| Method             | Parameters | Description|
+|--------------------| --------- |--------- |
+| getStatus          | `None` | Returns status code of the response |
+| getResponse        | `None` | Returns full response from the API |
+| getRequest         | `None` | Returns informations about the sent request |
+| getResult          | `None` | Returns result object from the response |
+| getResultCorrected | `None` | Returns corrected results from the response |
+| getSuggestions     | `None` | Returns suggestions from the response |
+| getErrors          | `None` | Returns errors from the response |
 
 ## Testing
 

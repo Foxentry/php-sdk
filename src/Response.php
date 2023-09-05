@@ -33,7 +33,7 @@ class Response
      *
      * @return mixed|null The status of the response
      */
-    public function status()
+    public function getStatus()
     {
         return $this->data->status ?? null;
     }
@@ -43,7 +43,7 @@ class Response
      *
      * @return mixed|null The request details or null if not present in the response
      */
-    public function request()
+    public function getRequest()
     {
         return $this->data->request ?? null;
     }
@@ -53,7 +53,7 @@ class Response
      *
      * @return mixed|null The response data or null if not present in the response
      */
-    public function response()
+    public function getResponse()
     {
         return $this->data->response ?? null;
     }
@@ -63,11 +63,11 @@ class Response
      *
      * @return mixed|null The result or null if not present in the response
      */
-    public function result()
+    public function getResult()
     {
-        $result = $this->response()->result ?? null;
+        $result = $this->getResponse()->result ?? null;
         if(empty($result))
-            $result = $this->response()->results ?? null;
+            $result = $this->getResponse()->results ?? null;
 
         return $result;
     }
@@ -77,9 +77,9 @@ class Response
      *
      * @return mixed|null The corrected result or null if not present in the response
      */
-    public function resultCorrected()
+    public function getResultCorrected()
     {
-        return $this->response()->resultCorrected ?? null;
+        return $this->getResponse()->resultCorrected ?? null;
     }
 
     /**
@@ -87,9 +87,9 @@ class Response
      *
      * @return mixed|null The suggestions or null if not present in the response
      */
-    public function suggestions()
+    public function getSuggestions()
     {
-        return $this->response()->suggestions ?? null;
+        return $this->getResponse()->suggestions ?? null;
     }
 
     /**
@@ -97,7 +97,7 @@ class Response
      *
      * @return mixed|null The errors or null if not present in the response
      */
-    public function errors()
+    public function getErrors()
     {
         return $this->data->errors ?? null;
     }

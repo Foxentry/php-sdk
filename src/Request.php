@@ -46,11 +46,11 @@ class Request
     }
 
     /**
-     * Set API key for bearer authentication.
+     * Set API key for authentication.
      *
      * @param string $apiKey The API key to set
      */
-    public function setBearerAuth(string $apiKey): void
+    public function setAuth(string $apiKey): void
     {
         $this->apiKey = $apiKey;
         $this->setHeader("Authorization", "Bearer $this->apiKey");
@@ -108,28 +108,54 @@ class Request
     }
 
     /**
-     * Set client information for the request.
+     * Set the client's IP address for the request.
      *
-     * @param string|null $ip The client IP address
-     * @param string|null $country The client country code in format ISO-3166-1 alpha-2.
-     * @param array|null $location The client location information
-     *
-     * @throws \InvalidArgumentException
-     * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 ISO-3166-1 alpha-2 country code format
+     * @param string $ip The client IP address
      */
-    public function setClient(?string $ip = null, ?string $country = null, ?array $location = null): void
+    public function setClientIP(string $ip): void
     {
-        if (!empty($location) && (empty($location["lat"]) || empty($location["lon"])) || (empty($location) && !is_null($location))) {
-            throw new \InvalidArgumentException('Client location parameter requires "lat" and "lon" properties to be set.');
-        }
+        if(!filter_var($ip, FILTER_VALIDATE_IP))
+            throw new \InvalidArgumentException("The specified IP address is not valid.");
 
-        $client = [
-            "ip" => $ip,
-            "country" => $country,
-            "location" => $location
+        if(empty($this->client))
+            $this->client = new \stdClass();
+
+        $this->client->ip = $ip;
+    }
+
+    /**
+     * Set the client's country information for the request.
+     *
+     * @param string $country The client country code in format ISO-3166-1 alpha-2.
+     */
+    public function setClientCountry(string $country): void
+    {
+        if(strlen($country) != 2)
+            throw new \InvalidArgumentException("The provided country code does not conform to the ISO-3166-1 alpha-2 format.");
+
+        if(empty($this->client))
+            $this->client = new \stdClass();
+
+        $this->client->country = $country;
+    }
+
+    /**
+     * Set the client's location information for the request.
+     *
+     * @param float $lon The client's longitude
+     * @param float $lat The client's latitude
+     */
+    public function setClientLocation(float $lat, float $lon): void
+    {
+        $location = [
+            "lat" => $lat,
+            "lon" => $lon,
         ];
 
-        $this->client = (object)$client;
+        if(empty($this->client))
+            $this->client = new \stdClass();
+
+        $this->client->location = (object)$location;
     }
 
     /**

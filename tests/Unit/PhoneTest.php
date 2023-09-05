@@ -43,7 +43,7 @@ class PhoneTest extends TestCase
 
         // Perform phone number validation.
         $response = $this->api->phone->validate($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);

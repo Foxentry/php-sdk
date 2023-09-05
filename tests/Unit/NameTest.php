@@ -43,11 +43,11 @@ class NameTest extends TestCase
 
         // Perform name validation.
         $response = $this->api->name->validate($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals("validWithSuggestion", $result->proposal);
-        $this->assertNotEmpty($response->suggestions());
+        $this->assertNotEmpty($response->getSuggestions());
     }
 }

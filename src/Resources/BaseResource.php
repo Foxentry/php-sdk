@@ -51,17 +51,43 @@ class BaseResource
     }
 
     /**
-     * Set client information for the resource request.
+     * Set the client's IP address for the resource request.
      *
-     * @param string|null $ip The client IP address
-     * @param mixed|null $country The client country information
-     * @param array|null $location The client location information. Specify as array with "lat" and "lon" properties!
+     * @param string $ip The client IP address
      *
      * @return BaseResource Returns $this for method chaining
      */
-    public function setClient(string $ip = null, string $country = null, array $location = null): BaseResource
+    public function setClientIP(string $ip): BaseResource
     {
-        $this->request->setClient($ip, $country, $location);
+        $this->request->setClientIP($ip);
+        return $this;
+    }
+
+    /**
+     * Set the client's country information for the resource request.
+     *
+     * @param string $country The client country code in format ISO-3166-1 alpha-2.
+     *
+     * @return BaseResource Returns $this for method chaining
+     * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 ISO-3166-1 alpha-2 country code format
+     */
+    public function setClientCountry(string $country): BaseResource
+    {
+        $this->request->setClientCountry($country);
+        return $this;
+    }
+
+    /**
+     * Set the client's location information for the resource request.
+     *
+     * @param float $lon The client's longitude
+     * @param float $lat The client's latitude
+     *
+     * @return BaseResource Returns $this for method chaining
+     */
+    public function setClientLocation(float $lat, float $lon): BaseResource
+    {
+        $this->request->setClientLocation($lat, $lon);
         return $this;
     }
 

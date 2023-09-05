@@ -65,7 +65,7 @@ class ApiClient
     public function __construct(string $apiKey)
     {
         $this->request = new Request();
-        $this->request->setBearerAuth($apiKey);
+        $this->request->setAuth($apiKey);
 
         $this->initializeResources();
     }

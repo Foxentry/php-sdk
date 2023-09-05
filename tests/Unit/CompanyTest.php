@@ -43,8 +43,8 @@ class CompanyTest extends TestCase
 
         // Perform company validation.
         $response = $this->api->company->validate($query);
-        $result = $response->result();
-        $resultCorrected = $response->resultCorrected();
+        $result = $response->getResult();
+        $resultCorrected = $response->getResultCorrected();
 
         // Assertions.
         $this->assertEquals("invalidWithCorrection", $result->proposal);
@@ -66,11 +66,11 @@ class CompanyTest extends TestCase
 
         // Perform company search.
         $response = $this->api->company->search($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertGreaterThan(0, $response->response()->resultsCount);
+        $this->assertGreaterThan(0, $response->getResponse()->resultsCount);
         $this->assertNotEmpty($result[0]->data);
     }
 
@@ -87,7 +87,7 @@ class CompanyTest extends TestCase
 
         // Perform company retrieval.
         $response = $this->api->company->get($query);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);

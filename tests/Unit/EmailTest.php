@@ -41,12 +41,39 @@ class EmailTest extends TestCase
 
         // Perform email validation.
         $response = $this->api->email->validate($validEmail);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($result->isValid);
         $this->assertNotEmpty($result->data);
+    }
+
+    public function testValidateValidEmailWithCustomIdAndOptionsAndClient()
+    {
+        // Valid email address for testing.
+        $validEmail = 'info@foxentry.com';
+
+        // Perform email validation.
+        $response = $this->api->email
+            ->setCustomId("custom request ID")
+            ->setOptions([
+                "validationType" => "extended",
+                "acceptDisposableEmails" => false
+            ])
+            ->setClientCountry("CZ")
+            ->setClientIP("127.0.0.1")
+            ->setClientLocation(50.114253, 14)
+            ->validate($validEmail);
+
+        $result = $response->getResult();
+        $request = $response->getRequest();
+
+        // Assertions.
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertTrue($result->isValid);
+        $this->assertNotEmpty($result->data);
+        $this->assertNotEmpty($request->customId);
     }
 
     /**
@@ -59,7 +86,7 @@ class EmailTest extends TestCase
 
         // Perform email validation.
         $response = $this->api->email->validate($invalidEmail);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
@@ -77,11 +104,11 @@ class EmailTest extends TestCase
 
         // Perform email search.
         $response = $this->api->email->search($input);
-        $result = $response->result();
+        $result = $response->getResult();
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertGreaterThan(0, $response->response()->resultsCount);
+        $this->assertGreaterThan(0, $response->getResponse()->resultsCount);
         $this->assertNotEmpty($result);
     }
 }
