@@ -1,0 +1,32 @@
+{
+    "name": "foxentry/php-api-client",
+    "description": "Foxentry.com PHP API client",
+    "keywords": ["Foxentry", "Foxentry.com"],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Dominik Hošic",
+            "email": "hosic@avantro.cz"
+        }
+    ],
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.8",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Foxentry\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Tests\\Unit\\": "tests/Unit/"
+        }
+    }
+}
