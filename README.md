@@ -6,6 +6,12 @@ The Foxentry PHP API Client Library enables seamless integration of various data
 
 If you have questions or need further assistance, reach out to us at [info@foxentry.cz](mailto:info@foxentry.cz)
 
+## Requirements
+To use the Foxentry API client, you need the following:
+
+-   [A Foxentry account](https://app.foxentry.com/registration)
+-   An Application project created with a generated API key
+-   PHP version 7.4 or higher
 
 ## Installation
 
