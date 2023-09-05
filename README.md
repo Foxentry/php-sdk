@@ -84,7 +84,7 @@ The API client provides various resources, each with its own related methods lis
 | -------- | --------- |
 | Company | [validate](https://foxentry.dev/reference/validatecompanydata)<br>[search](https://foxentry.dev/reference/companysearch)<br>[get](https://foxentry.dev/reference/getcompanydata) |
 | Email   | [validate](https://foxentry.dev/reference/validateemail)<br>[search](https://foxentry.dev/reference/emailsearch) |
-| Location | [validate](https://foxentry.dev/reference/locationvalidation)<br>[search](](https://foxentry.dev/reference/locationsearch))<br>[get](https://foxentry.dev/reference/locationget)<br> [localization](https://foxentry.dev/reference/locationlocalization) |
+| Location | [validate](https://foxentry.dev/reference/locationvalidation)<br>[search](https://foxentry.dev/reference/locationsearch)<br>[get](https://foxentry.dev/reference/locationget)<br> [localization](https://foxentry.dev/reference/locationlocalization) |
 | Name   | [validate](https://foxentry.dev/reference/namevalidation) |
 | Phone   | [validate](https://foxentry.dev/reference/validatephonenumber) |
 
