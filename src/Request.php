@@ -12,30 +12,85 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class Request
 {
+    /**
+     * The base URI for the Foxentry API.
+     *
+     * @var string
+     */
     private string $baseUri = "https://api.foxentry.com/";
 
+    /**
+     * The HTTP request method (e.g., "GET" or "POST").
+     *
+     * @var string
+     */
     private string $method = "POST";
 
+    /**
+     * The HTTP headers for the API request.
+     *
+     * @var array
+     */
     private array $headers = [
         "Foxentry-Include-Request-Details" => false,
         "Content-Type" => "application/json",
         "Accept" => "application/json"
     ];
 
+    /**
+     * The request body data to send to the API.
+     *
+     * @var object
+     */
     private object $body;
 
+    /**
+     * A custom ID for the request (optional).
+     *
+     * @var string|null
+     */
     private ?string $customId = null;
 
+    /**
+     * The query parameters for the API request.
+     *
+     * @var array
+     */
     private array $query;
 
+    /**
+     * Additional options for the API request (optional).
+     *
+     * @var array|null
+     */
     private ?array $options = null;
 
+    /**
+     * The API endpoint to send the request to.
+     *
+     * @var string
+     */
     private string $endpoint;
 
+    /**
+     * The HTTP client for making requests.
+     *
+     * @var HttpClient
+     */
     private HttpClient $httpClient;
 
+    /**
+     * The API key used for authentication.
+     *
+     * @var string
+     */
     private string $apiKey;
 
+    /**
+     * Information about the client making the request (optional).
+     *
+     * @var object|null
+     */
     private ?object $client = null;
 
     public function __construct()
