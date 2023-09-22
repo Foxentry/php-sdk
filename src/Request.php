@@ -234,8 +234,8 @@ class Request
             $responseBody = $response->getBody()->getContents();
 
             return new Response($responseBody);
-        } catch (GuzzleException $e) {
-            throw new \Exception($e->getMessage());
+        } catch (\Exception $e) {
+            throw new \Exception($e->getResponse()->getBody()->getContents());
         }
     }
 
