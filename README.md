@@ -117,4 +117,4 @@ Response class is returned with every request providing methods below:
 
 ## Testing
 
-The library includes unit tests to ensure its functionality. You can run the unit tests using **PHPUnit**. Don't forget to set your API key for these tests, which is located in `\tests\Config.php` file.
+The library includes unit tests to ensure its functionality and provide examples of how the library can be used. You can run the unit tests using PHPUnit. Don't forget to set your API key for these tests, located in the \tests\Config.php file.
