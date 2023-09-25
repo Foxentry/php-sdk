@@ -14,26 +14,26 @@ final class Email extends BaseResource
     /**
      * Validate an email address.
      *
-     * @param string $email Email address to validate
+     * @param string|array $query Email address to validate
      *
      * @return Response The response from the validation request
      */
-    public function validate($email): Response
+    public function validate($query): Response
     {
-        $query = ["email" => $email];
+        $query = is_array($query) ? $query : ["email" => $query];
         return $this->sendRequest($query);
     }
 
     /**
      * Search for information related to an email address.
      *
-     * @param string $email Email address to search for
+     * @param string|array $query Email address to search for
      *
      * @return Response The response from the search request
      */
-    public function search(string $email): Response
+    public function search($query): Response
     {
-        $query = ["value" => $email];
+        $query = is_array($query) ? $query : ["value" => $query];
         return $this->sendRequest($query);
     }
 

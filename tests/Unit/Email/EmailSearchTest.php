@@ -20,6 +20,7 @@ class EmailSearchTest extends Base
         // Input string for email search.
         $input = 'info@';
 
+        // Options that will be sent within the request.
         $options = [
             "resultsLimit" => 5
         ];
@@ -34,5 +35,28 @@ class EmailSearchTest extends Base
         $this->assertEmpty($response->getErrors());
         $this->assertGreaterThan(0, $response->getResponse()->resultsCount);
         $this->assertNotEmpty($result);
+    }
+
+    /**
+     *  Test email search when the input parameter is specified as the entire query.
+     */
+    public function testQueryInput()
+    {
+        // Query that will be sent to the API for validation.
+        $query = [
+            "value" => "info@"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "resultsLimit" => 5
+        ];
+
+        // Perform email validation.
+        $response = $this->api->email->setOptions($options)->search($query);
+
+        // Assertions.
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(200, $response->getStatus());
     }
 }

@@ -233,4 +233,27 @@ class EmailValidateTest extends Base
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
     }
+
+    /**
+     * Test email validation when the input parameter is specified as the entire query.
+     */
+    public function testQueryInput()
+    {
+        // Query that will be sent to the API for validation.
+        $query = [
+            "email" => "info@foxentry.com"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "validationType" => "extended"
+        ];
+
+        // Perform email validation.
+        $response = $this->api->email->setOptions($options)->validate($query);
+
+        // Assertions.
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(200, $response->getStatus());
+    }
 }
