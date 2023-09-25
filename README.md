@@ -61,7 +61,6 @@ $response = $api->email
     ->setClientIP("127.0.0.1") // Sets the client IP address.
     ->setClientCountry("CZ") // Sets the client country code.
     ->setOptions([
-        "validationType" => "basic",// Set the validation type to "basic".
         "acceptDisposableEmails" => false // Disables acceptance of disposable emails.
     ])
     ->validate("info@foxentry.cz"); // Sends request to Foxentry API and performs email validation.
