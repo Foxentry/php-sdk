@@ -53,7 +53,8 @@ use Foxentry\ApiClient;
 Create a new instance of the ApiClient class and provide your API key. 
 The API key can be generated in the Foxentry administration under Settings > API Keys section. 
 */
-$api = new ApiClient("[YOUR API KEY]");
+$api = new ApiClient();
+$api->setAuth("[YOUR API KEY]");
 
 // Set custom parameters for the email validation request.
 $response = $api->email
@@ -75,10 +76,11 @@ The APIClient class is the main class responsible for communication with the API
 
 It offers the following methods:
 
-| Method | Parameters | Description |
-| -------- | --------- |--------- |
-| setApiVersion | `version mumber` | Sets specific API version, that will be used |
-| includeRequestDetails | `true/false` | Includes request details with every request |
+| Method                | Parameters       | Description                                  |
+|-----------------------|------------------|----------------------------------------------|
+| setAuth               | `API key`        | Sets API key, that will be used in requests  |
+| setApiVersion         | `version number` | Sets specific API version, that will be used |
+| includeRequestDetails | `true/false`     | Includes request details with every request  |
 
 To access various resources from this class, simply provide the resource name, and you will be able to access the resource's methods, e.g., `$api->email->search($query)`, `$api->company->get($query)`, etc.
 
