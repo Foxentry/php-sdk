@@ -4,6 +4,7 @@ namespace Foxentry;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Request class for handling API requests.
@@ -234,8 +235,9 @@ class Request
             $responseBody = $response->getBody()->getContents();
 
             return new Response($responseBody);
-        } catch (\Exception $e) {
-            throw new \Exception($e->getResponse()->getBody()->getContents());
+        } catch (RequestException $e) {
+            $error = $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : $e->getMessage();
+            throw new \Exception($error);
         }
     }
 
