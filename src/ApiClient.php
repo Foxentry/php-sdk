@@ -60,14 +60,26 @@ class ApiClient
     /**
      * ApiClient constructor.
      *
-     * @param string $apiKey The API key for authentication
+     * @param string|null $apiKey The API key for authentication
      */
-    public function __construct(string $apiKey)
+    public function __construct(?string $apiKey = null)
     {
         $this->request = new Request();
-        $this->request->setAuth($apiKey);
+
+        if(!empty($apiKey))
+            $this->request->setAuth($apiKey);
 
         $this->initializeResources();
+    }
+
+    /**
+     * Set API key for authentication.
+     *
+     * @param string $apiKey The API key to set
+     */
+    public function setAuth(string $apiKey): void
+    {
+        $this->request->setAuth($apiKey);
     }
 
     /**
