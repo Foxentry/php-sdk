@@ -9,7 +9,6 @@
             "email": "hosic@avantro.cz"
         }
     ],
-    "type": "project",
     "require": {
         "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.8",

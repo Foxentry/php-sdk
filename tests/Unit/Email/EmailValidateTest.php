@@ -256,4 +256,38 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
     }
+
+    /**
+     * Test of receiving response headers
+     */
+    public function testResponseHeaders()
+    {
+        // Email that will be sent to the API for validation.
+        $email = "info@foxentry.com";
+
+        // Options that will be sent within the request.
+        $options = [
+            "validationType" => "extended"
+        ];
+
+        // Perform email validation and get headers of the response.
+        $response = $this->api->email->setOptions($options)->validate($email);
+        $headers = $response->getHeaders();
+        $rateLimit = $response->getRateLimit();
+        $rateLimitPeriod = $response->getRateLimitPeriod();
+        $rateLimitRemaining = $response->getRateLimitRemaining();
+        $dailyCreditsLeft = $response->getDailyCreditsLeft();
+        $dailyCreditsLimit = $response->getDailyCreditsLimit();
+        $apiVersion = $response->getApiVersion();
+
+        // Assertions.
+        $this->assertIsArray($headers);
+        $this->assertNotEmpty($headers);
+        $this->assertIsNumeric($rateLimit);
+        $this->assertIsNumeric($rateLimitPeriod);
+        $this->assertIsNumeric($rateLimitRemaining);
+        $this->assertIsNumeric($dailyCreditsLeft);
+        $this->assertIsNumeric($dailyCreditsLimit);
+        $this->assertIsNumeric($apiVersion);
+    }
 }
