@@ -232,9 +232,10 @@ class Request
                 "body" => json_encode($this->body)
             ]);
 
+            $responseHeaders = $response->getHeaders();
             $responseBody = $response->getBody()->getContents();
 
-            return new Response($responseBody);
+            return new Response($responseBody, $responseHeaders);
         } catch (RequestException $e) {
             $error = $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : $e->getMessage();
             throw new \Exception($error);

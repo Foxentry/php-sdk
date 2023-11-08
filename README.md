@@ -106,15 +106,22 @@ To specify the client, use the methods **setClientIP($ip)**, **setClientCountry(
 
 Response class is returned with every request providing methods below:
 
-| Method             | Parameters | Description|
-|--------------------| --------- |--------- |
-| getStatus          | `None` | Returns status code of the response |
-| getResponse        | `None` | Returns full response from the API |
+| Method             | Parameters | Description                                 |
+|--------------------| --------- |---------------------------------------------|
+| getStatus          | `None` | Returns status code of the response         |
+| getResponse        | `None` | Returns full response from the API          |
 | getRequest         | `None` | Returns informations about the sent request |
-| getResult          | `None` | Returns result object from the response |
+| getResult          | `None` | Returns result object from the response     |
 | getResultCorrected | `None` | Returns corrected results from the response |
-| getSuggestions     | `None` | Returns suggestions from the response |
-| getErrors          | `None` | Returns errors from the response |
+| getSuggestions     | `None` | Returns suggestions from the response       |
+| getErrors          | `None` | Returns errors from the response            |
+| getHeaders         | `None` | Returns request headers from the response   |
+| getRateLimit       | `None` | Returns request rate limit for the API      |
+| getRateLimitPeriod | `None` | Returns reset period of request rate limit  |
+| getRateLimitRemaining | `None` | Returns remaining rate of requests          |
+| getDailyCreditsLeft | `None` | Returns remaining daily credits             |
+| getDailyCreditsLimit | `None` | Returns daily credits limit                 |
+| getApiVersion | `None` | Returns API version used in the request     |
 
 ## Testing
 
