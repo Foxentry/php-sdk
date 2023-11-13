@@ -1,21 +1,20 @@
 <?php
 
-namespace Foxentry\Resources;
+namespace Foxentry\Resource;
 
 use Foxentry\Response;
 
 /**
- * Company resource class for validating, searching, and retrieving company information.
+ * Location resource class for validating, searching, and retrieving information about addresses
  *
- * @package Foxentry\Resources
+ * @package Foxentry\Resource
  */
-final class Company extends BaseResource
+final class Location extends BaseResource
 {
     /**
-     * Validate a company.
+     * Validate an address.
      *
      * @param array $query Query parameters for the validation request
-     *
      * @return Response The response from the validation request
      */
     public function validate(array $query): Response
@@ -24,7 +23,7 @@ final class Company extends BaseResource
     }
 
     /**
-     * Search for a company.
+     * Search for a location.
      *
      * @param array $query Query parameters for the search request
      *
@@ -36,13 +35,25 @@ final class Company extends BaseResource
     }
 
     /**
-     * Get company details.
+     * Get location details.
      *
      * @param array $query Query parameters for the get request
      *
      * @return Response The response from the API
      */
     public function get(array $query): Response
+    {
+        return $this->sendRequest($query);
+    }
+
+    /**
+     * Localize a location.
+     *
+     * @param array $query Query parameters for the localize request
+     *
+     * @return Response The response from the API
+     */
+    public function localize(array $query): Response
     {
         return $this->sendRequest($query);
     }

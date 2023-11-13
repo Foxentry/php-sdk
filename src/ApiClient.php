@@ -2,11 +2,11 @@
 
 namespace Foxentry;
 
-use Foxentry\Resources\Company;
-use Foxentry\Resources\Email;
-use Foxentry\Resources\Location;
-use Foxentry\Resources\Name;
-use Foxentry\Resources\Phone;
+use Foxentry\Resource\Company;
+use Foxentry\Resource\Email;
+use Foxentry\Resource\Location;
+use Foxentry\Resource\Name;
+use Foxentry\Resource\Phone;
 
 /**
  * API client class for interacting with Foxentry API.
