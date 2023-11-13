@@ -102,7 +102,7 @@ class CompanySearchTest extends Base
         // Input parameters for VAT number search.
         $query = [
             "type" => "vatNumber",
-            "value" => "10"
+            "value" => "CZ04997476"
         ];
 
         // Options that will be sent within the request.
