@@ -92,7 +92,7 @@ class Response
      * @return float Remaining daily credits
      */
     public function getDailyCreditsLeft(): float {
-        return reset($this->headers['x-foxentry-daily-credits-left']);
+        return reset($this->headers['foxentry-daily-credits-left']);
     }
 
     /**
@@ -101,7 +101,7 @@ class Response
      * @return int Daily credits limit
      */
     public function getDailyCreditsLimit(): int {
-        return reset($this->headers['x-foxentry-daily-credits-limit']);
+        return reset($this->headers['foxentry-daily-credits-limit']);
     }
 
     /**
