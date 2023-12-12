@@ -2,6 +2,14 @@
 
 namespace Foxentry;
 
+use Foxentry\Exception\BadRequestException;
+use Foxentry\Exception\TooManyRequestsException;
+use Foxentry\Exception\ForbiddenException;
+use Foxentry\Exception\FoxentryException;
+use Foxentry\Exception\NotFoundException;
+use Foxentry\Exception\PaymentRequiredException;
+use Foxentry\Exception\ServerErrorException;
+use Foxentry\Exception\UnauthorizedException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
@@ -219,7 +227,15 @@ class Request
      *
      * @return Response The response from the API
      *
-     * @throws \Exception
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     public function send(): Response
     {
@@ -237,8 +253,7 @@ class Request
 
             return new Response($responseBody, $responseHeaders);
         } catch (RequestException $e) {
-            $error = $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : $e->getMessage();
-            throw new \Exception($error);
+            throw FoxentryException::fromRequestException($e);
         }
     }
 

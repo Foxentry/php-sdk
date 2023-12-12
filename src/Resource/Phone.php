@@ -1,13 +1,13 @@
 <?php
 
-namespace Foxentry\Resources;
+namespace Foxentry\Resource;
 
 use Foxentry\Response;
 
 /**
  * Phone resource class for validating phone numbers.
  *
- * @package Foxentry\Resources
+ * @package Foxentry\Resource
  */
 final class Phone extends BaseResource
 {

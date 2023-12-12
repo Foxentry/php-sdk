@@ -1,13 +1,13 @@
 <?php
 
-namespace Foxentry\Resources;
+namespace Foxentry\Resource;
 
 use Foxentry\Response;
 
 /**
  * Name resource class for validating names.
  *
- * @package Foxentry\Resources
+ * @package Foxentry\Resource
  */
 final class Name extends BaseResource
 {

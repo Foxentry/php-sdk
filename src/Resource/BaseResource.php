@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxentry\Resources;
+namespace Foxentry\Resource;
 
 use Foxentry\Request;
 use Foxentry\Response;
@@ -8,7 +8,7 @@ use Foxentry\Response;
 /**
  * Base resource class for handling common resource functionality.
  *
- * @package Foxentry\Resources
+ * @package Foxentry\Resource
  */
 class BaseResource
 {

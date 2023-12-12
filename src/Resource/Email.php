@@ -1,13 +1,13 @@
 <?php
 
-namespace Foxentry\Resources;
+namespace Foxentry\Resource;
 
 use Foxentry\Response;
 
 /**
  * Email resource class for validating and searching email addresses.
  *
- * @package Foxentry\Resources
+ * @package Foxentry\Resource
  */
 final class Email extends BaseResource
 {
