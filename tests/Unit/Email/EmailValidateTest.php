@@ -276,8 +276,6 @@ class EmailValidateTest extends Base
         $rateLimit = $response->getRateLimit();
         $rateLimitPeriod = $response->getRateLimitPeriod();
         $rateLimitRemaining = $response->getRateLimitRemaining();
-        $dailyCreditsLeft = $response->getDailyCreditsLeft();
-        $dailyCreditsLimit = $response->getDailyCreditsLimit();
         $apiVersion = $response->getApiVersion();
 
         // Assertions.
@@ -286,8 +284,6 @@ class EmailValidateTest extends Base
         $this->assertIsNumeric($rateLimit);
         $this->assertIsNumeric($rateLimitPeriod);
         $this->assertIsNumeric($rateLimitRemaining);
-        $this->assertIsNumeric($dailyCreditsLeft);
-        $this->assertIsNumeric($dailyCreditsLimit);
         $this->assertIsNumeric($apiVersion);
     }
 }
