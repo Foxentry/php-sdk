@@ -176,4 +176,39 @@ class NameValidateTest extends Base
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
     }
+
+    /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "name" => "Pavel"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "dataScope" => "basic"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->name()
+            ->setOptions($options)
+            ->includeRequestDetails()
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->name()
+            ->setOptions($options)
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
+    }
 }

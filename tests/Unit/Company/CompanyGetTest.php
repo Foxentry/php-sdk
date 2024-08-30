@@ -152,4 +152,40 @@ class CompanyGetTest extends Base
         $this->assertEquals(200, $response->getStatus());
         $this->assertNotEmpty($result[0]->data);
     }
+
+        /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "country" => "CZ",
+            "registrationNumber" => "04997476"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "dataScope" => "basic"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->company()
+            ->setOptions($options)
+            ->includeRequestDetails()
+            ->get($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->company()
+            ->setOptions($options)
+            ->get($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
+    }
 }

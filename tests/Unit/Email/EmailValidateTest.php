@@ -286,4 +286,30 @@ class EmailValidateTest extends Base
         $this->assertIsNumeric($rateLimitRemaining);
         $this->assertIsNumeric($apiVersion);
     }
+
+    /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+         $email = "info@foxentry.com";
+
+        // Perform name validation with client information.
+        $response = $this->api->email()
+            ->includeRequestDetails()
+            ->validate($email);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->email()
+            ->validate($email);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
+    }
 }

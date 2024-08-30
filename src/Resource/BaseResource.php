@@ -29,8 +29,9 @@ class BaseResource
      *
      * @param bool $value Whether to include request details (default: true)
      */
-    public function includeRequestDetails( bool $value = true ): void {
+    public function includeRequestDetails( bool $value = true ): self {
         $this->request->setHeader( "Foxentry-Include-Request-Details", $value );
+        return $this;
     }
 
     /**
