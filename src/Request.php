@@ -43,7 +43,8 @@ class Request
     private array $headers = [
         "Foxentry-Include-Request-Details" => false,
         "Content-Type" => "application/json",
-        "Accept" => "application/json"
+        "Accept" => "application/json",
+        "User-Agent" => "FoxentrySdk (PHP/2.3.0; ApiReference/2.0)"
     ];
 
     /**
