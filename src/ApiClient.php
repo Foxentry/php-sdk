@@ -23,8 +23,10 @@ class ApiClient {
      *
      * @param string|null $apiKey The API key for authentication
      */
-    public function __construct( ?string $apiKey ) {
-        $this->apiKey = $apiKey;
+    public function __construct( ?string $apiKey = null ) {
+        if ($apiKey !== null) {
+            $this->setAuth($apiKey);
+        }
     }
 
 
