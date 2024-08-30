@@ -57,9 +57,10 @@ $api = new ApiClient();
 $api->setAuth("[YOUR API KEY]");
 
 // Set custom parameters for the email validation request.
-$response = $api->email
+$response = $api->email()
     ->setCustomId("CustomRequestID") // Sets a custom request ID.
     ->setClientIP("127.0.0.1") // Sets the client IP address.
+    ->includeRequestDetails() // Returns the request in API response
     ->setClientCountry("CZ") // Sets the client country code.
     ->setOptions([
         "acceptDisposableEmails" => false // Disables acceptance of disposable emails.
@@ -80,9 +81,8 @@ It offers the following methods:
 |-----------------------|------------------|----------------------------------------------|
 | setAuth               | `API key`        | Sets API key, that will be used in requests  |
 | setApiVersion         | `version number` | Sets specific API version, that will be used |
-| includeRequestDetails | `true/false`     | Includes request details with every request  |
 
-To access various resources from this class, simply provide the resource name, and you will be able to access the resource's methods, e.g., `$api->email->search($query)`, `$api->company->get($query)`, etc.
+To access various resources from this class, simply provide the resource name, and you will be able to access the resource's methods, e.g., `$api->email()->search($query)`, `$api->company()->get($query)`, etc.
 
 ## Resources
 
