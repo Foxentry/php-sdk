@@ -1,13 +1,15 @@
 name: Test
 
-on: [push]
+on: [ push ]
 
 jobs:
-  build-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - uses: php-actions/composer@v6
-      - run: echo "Composer dependencies have been installed"
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+      - run: composer install --no-progress --prefer-dist
       - run: vendor/bin/phpunit
