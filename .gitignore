@@ -1,3 +1,4 @@
 ﻿/.idea
 .phpunit.result.cache
 phpunit.xml
+vendor
