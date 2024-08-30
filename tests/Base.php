@@ -14,7 +14,7 @@ class Base extends TestCase
     public function __construct(string $name)
     {
         parent::__construct($name);
-        $this->assertNotEmpty(Config::API_KEY, 'You didn\'t set your API key in the \test\Config.php file');
-        $this->api = new ApiClient(Config::API_KEY);
+        $this->assertNotEmpty($_ENV['API_KEY'], 'You didn\'t set your API key in .env file');
+        $this->api = new ApiClient($_ENV['API_KEY']);
     }
 }
