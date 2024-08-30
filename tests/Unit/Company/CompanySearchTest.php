@@ -27,7 +27,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform company name search.
-        $response = $this->api->company->setOptions($options)->search($query);
+        $response = $this->api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform registration number search.
-        $response = $this->api->company->setOptions($options)->search($query);
+        $response = $this->api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -83,7 +83,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform tax number search.
-        $response = $this->api->company->setOptions($options)->search($query);
+        $response = $this->api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -111,7 +111,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform VAT number search.
-        $response = $this->api->company->setOptions($options)->search($query);
+        $response = $this->api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -142,7 +142,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform company data search.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->search($query);
@@ -174,7 +174,7 @@ class CompanySearchTest extends Base
         ];
 
         // Perform company data search with client information.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")

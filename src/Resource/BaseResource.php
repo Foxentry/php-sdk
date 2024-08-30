@@ -25,6 +25,15 @@ class BaseResource
     }
 
     /**
+     * Include request details in API responses.
+     *
+     * @param bool $value Whether to include request details (default: true)
+     */
+    public function includeRequestDetails( bool $value = true ): void {
+        $this->request->setHeader( "Foxentry-Include-Request-Details", $value );
+    }
+
+    /**
      * Set a custom ID for the resource.
      *
      * @param string $id The custom ID to set

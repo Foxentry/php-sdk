@@ -103,8 +103,13 @@ class Request
      */
     private ?object $client = null;
 
-    public function __construct()
-    {
+    public function __construct(string $apiVersion, ?string $apiKey) {
+        $this->setHeader("Api-Version", $apiVersion);
+
+        if ($apiKey){
+            $this->setAuth($apiKey);
+        }
+
         $this->httpClient = new HttpClient([
             'base_uri' => $this->baseUri,
         ]);

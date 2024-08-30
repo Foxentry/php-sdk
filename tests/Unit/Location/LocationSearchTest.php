@@ -27,7 +27,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform street search.
-        $response = $this->api->location->setOptions($options)->search($query);
+        $response = $this->api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform city search.
-        $response = $this->api->location->setOptions($options)->search($query);
+        $response = $this->api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -83,7 +83,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform street with number search.
-        $response = $this->api->location->setOptions($options)->search($query);
+        $response = $this->api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -111,7 +111,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform ZIP code search.
-        $response = $this->api->location->setOptions($options)->search($query);
+        $response = $this->api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -139,7 +139,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform full location search.
-        $response = $this->api->location->setOptions($options)->search($query);
+        $response = $this->api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -170,7 +170,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform location data validation.
-        $response = $this->api->location
+        $response = $this->api->location()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->search($query);
@@ -202,7 +202,7 @@ class LocationSearchTest extends Base
         ];
 
         // Perform location data validation with client information.
-        $response = $this->api->location
+        $response = $this->api->location()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
