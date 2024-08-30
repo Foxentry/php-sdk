@@ -27,7 +27,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company->setOptions($options)->get($query);
+        $response = $this->api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -53,7 +53,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company->setOptions($options)->get($query);
+        $response = $this->api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -79,7 +79,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company->setOptions($options)->get($query);
+        $response = $this->api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -108,7 +108,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->get($query);
@@ -138,7 +138,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval with client information.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
@@ -151,5 +151,41 @@ class CompanyGetTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertNotEmpty($result[0]->data);
+    }
+
+        /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "country" => "CZ",
+            "registrationNumber" => "04997476"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "dataScope" => "basic"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->company()
+            ->setOptions($options)
+            ->includeRequestDetails()
+            ->get($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->company()
+            ->setOptions($options)
+            ->get($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
     }
 }

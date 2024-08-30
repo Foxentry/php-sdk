@@ -89,18 +89,26 @@ class Response
     /**
      * Get remaining daily credits.
      *
-     * @return float Remaining daily credits
+     * @return ?float Remaining daily credits, null if no limit is set
      */
-    public function getDailyCreditsLeft(): float {
+    public function getDailyCreditsLeft(): ?float {
+        if (!isset($this->headers['foxentry-daily-credits-left'])){
+            return null;
+        }
+
         return reset($this->headers['foxentry-daily-credits-left']);
     }
 
     /**
      * Get daily credits limit.
      *
-     * @return int Daily credits limit
+     * @return ?int Daily credits limit, null if no limit is set
      */
-    public function getDailyCreditsLimit(): int {
+    public function getDailyCreditsLimit(): ?int {
+        if (!isset($this->headers['foxentry-daily-credits-limit'])){
+            return null;
+        }
+
         return reset($this->headers['foxentry-daily-credits-limit']);
     }
 

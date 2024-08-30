@@ -13,73 +13,28 @@ use Foxentry\Resource\Phone;
  *
  * @package Foxentry
  */
-class ApiClient
-{
-    /**
-     * Email resource.
-     *
-     * @var Email
-     */
-    public Email $email;
+class ApiClient {
 
-    /**
-     * Location resource.
-     *
-     * @var Location
-     */
-    public Location $location;
-
-    /**
-     * Company resource.
-     *
-     * @var Company
-     */
-    public Company $company;
-
-    /**
-     * Name resource.
-     *
-     * @var Name
-     */
-    public Name $name;
-
-    /**
-     * Phone resource.
-     *
-     * @var Phone
-     */
-    public Phone $phone;
-
-    /**
-     * Request object for making API requests.
-     *
-     * @var Request
-     */
-    private Request $request;
+    protected string $apiKey;
+    protected string $apiVersion = "2.0";
 
     /**
      * ApiClient constructor.
      *
      * @param string|null $apiKey The API key for authentication
      */
-    public function __construct(?string $apiKey = null)
-    {
-        $this->request = new Request();
-
-        if(!empty($apiKey))
-            $this->request->setAuth($apiKey);
-
-        $this->initializeResources();
+    public function __construct( ?string $apiKey ) {
+        $this->apiKey = $apiKey;
     }
+
 
     /**
      * Set API key for authentication.
      *
      * @param string $apiKey The API key to set
      */
-    public function setAuth(string $apiKey): void
-    {
-        $this->request->setAuth($apiKey);
+    public function setAuth( string $apiKey ): void {
+        $this->apiKey = $apiKey;
     }
 
     /**
@@ -87,30 +42,34 @@ class ApiClient
      *
      * @param string $version The API version to set
      */
-    public function setApiVersion(string $version): void
-    {
-        $this->request->setHeader("Api-Version", $version);
+    public function setApiVersion( string $version ): void {
+        $this->apiVersion = $version;
     }
 
-    /**
-     * Include request details in API responses.
-     *
-     * @param bool $value Whether to include request details (default: true)
-     */
-    public function includeRequestDetails(bool $value = true): void
-    {
-        $this->request->setHeader("Foxentry-Include-Request-Details", $value);
+
+    function company() {
+        $request = new Request($this->apiVersion, $this->apiKey);
+        return new Company( $request );
     }
 
-    /**
-     * Initialize the API resources.
-     */
-    private function initializeResources(): void
-    {
-        $this->company = new Company($this->request);
-        $this->email = new Email($this->request);
-        $this->location = new Location($this->request);
-        $this->name = new Name($this->request);
-        $this->phone = new Phone($this->request);
+    function email() {
+        $request = new Request($this->apiVersion, $this->apiKey);
+        return new Email( $request );
     }
+
+    function location() {
+        $request = new Request($this->apiVersion, $this->apiKey);
+        return new Location( $request );
+    }
+
+    function name() {
+        $request = new Request($this->apiVersion, $this->apiKey);
+        return new Name( $request );
+    }
+
+    function phone() {
+        $request = new Request($this->apiVersion, $this->apiKey);
+        return new Phone( $request );
+    }
+
 }

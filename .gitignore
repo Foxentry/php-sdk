@@ -1,3 +1,4 @@
 ﻿/.idea
 .phpunit.result.cache
-/tests/Config.php
+phpunit.xml
+vendor

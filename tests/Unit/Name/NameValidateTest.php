@@ -26,7 +26,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform name validation.
-        $response = $this->api->name->setOptions($options)->validate($query);
+        $response = $this->api->name()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -54,7 +54,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform name validation.
-        $response = $this->api->name->setOptions($options)->validate($query);
+        $response = $this->api->name()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -82,7 +82,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform name validation.
-        $response = $this->api->name->setOptions($options)->validate($query);
+        $response = $this->api->name()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -109,7 +109,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform full name validation.
-        $response = $this->api->name->setOptions($options)->validate($query);
+        $response = $this->api->name()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -134,7 +134,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform name validation.
-        $response = $this->api->name
+        $response = $this->api->name()
             ->setCustomId($customRequestID)
             ->validate($query);
 
@@ -162,7 +162,7 @@ class NameValidateTest extends Base
         ];
 
         // Perform name validation with client information.
-        $response = $this->api->name
+        $response = $this->api->name()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
@@ -175,5 +175,40 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
+    }
+
+    /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "name" => "Pavel"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "dataScope" => "basic"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->name()
+            ->setOptions($options)
+            ->includeRequestDetails()
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->name()
+            ->setOptions($options)
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
     }
 }

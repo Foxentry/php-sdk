@@ -43,7 +43,8 @@ class Request
     private array $headers = [
         "Foxentry-Include-Request-Details" => false,
         "Content-Type" => "application/json",
-        "Accept" => "application/json"
+        "Accept" => "application/json",
+        "User-Agent" => "FoxentrySdk (PHP/2.3.0; ApiReference/2.0)"
     ];
 
     /**
@@ -102,8 +103,13 @@ class Request
      */
     private ?object $client = null;
 
-    public function __construct()
-    {
+    public function __construct(string $apiVersion, ?string $apiKey) {
+        $this->setHeader("Api-Version", $apiVersion);
+
+        if ($apiKey){
+            $this->setAuth($apiKey);
+        }
+
         $this->httpClient = new HttpClient([
             'base_uri' => $this->baseUri,
         ]);

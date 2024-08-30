@@ -27,7 +27,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company->setOptions($options)->validate($query);
+        $response = $this->api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company->setOptions($options)->validate($query);
+        $response = $this->api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -83,7 +83,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company->setOptions($options)->validate($query);
+        $response = $this->api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -110,7 +110,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company->setOptions($options)->validate($query);
+        $response = $this->api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -141,7 +141,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->validate($query);
@@ -171,7 +171,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation with client information.
-        $response = $this->api->company
+        $response = $this->api->company()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")

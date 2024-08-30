@@ -26,7 +26,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone->setOptions($options)->validate($query);
+        $response = $this->api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -53,7 +53,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone->setOptions($options)->validate($query);
+        $response = $this->api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -81,7 +81,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone->setOptions($options)->validate($query);
+        $response = $this->api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -109,7 +109,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone->setOptions($options)->validate($query);
+        $response = $this->api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -134,7 +134,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone
+        $response = $this->api->phone()
             ->setCustomId($customRequestID)
             ->validate($query);
 
@@ -157,7 +157,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation with client information.
-        $response = $this->api->phone
+        $response = $this->api->phone()
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
             ->setClientLocation(50.073658, 14.418540)
@@ -169,5 +169,33 @@ class PhoneValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
+    }
+
+    /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "numberWithPrefix" => "+420607123456"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->phone()
+            ->includeRequestDetails()
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->phone()
+            ->validate($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
     }
 }

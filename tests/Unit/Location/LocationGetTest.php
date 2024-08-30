@@ -28,7 +28,7 @@ class LocationGetTest extends Base
         ];
 
         // Perform location data retrieval.
-        $response = $this->api->location->setOptions($options)->get($query);
+        $response = $this->api->location()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class LocationGetTest extends Base
         ];
 
         // Perform location data retrieval.
-        $response = $this->api->location->setOptions($options)->get($query);
+        $response = $this->api->location()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -85,7 +85,7 @@ class LocationGetTest extends Base
         ];
 
         // Perform location data retrieval.
-        $response = $this->api->location
+        $response = $this->api->location()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->get($query);
@@ -116,7 +116,7 @@ class LocationGetTest extends Base
         ];
 
         // Perform location data retrieval with client information.
-        $response = $this->api->location
+        $response = $this->api->location()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
@@ -129,5 +129,42 @@ class LocationGetTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertNotEmpty($result[0]->data);
+    }
+
+    /**
+     * Settings should not persist between calls.
+     */
+    public function testInstanceSettings()
+    {
+        // Name that will be sent to the API for validation.
+        $query = [
+            "country" => "CZ",
+            "id" => "22349995"
+        ];
+
+        // Options that will be sent within the request.
+        $options = [
+            "idType" => "external",
+            "dataScope" => "basic"
+        ];
+
+        // Perform name validation with client information.
+        $response = $this->api->location()
+            ->setOptions($options)
+            ->includeRequestDetails()
+            ->get($query);
+
+        $result = $response->getRequest();
+
+
+        $this->assertObjectHasProperty('query', $result);
+
+        $response = $this->api->location()
+            ->setOptions($options)
+            ->get($query);
+
+        $result = $response->getRequest();
+
+        $this->assertObjectNotHasProperty('query', $result);
     }
 }
