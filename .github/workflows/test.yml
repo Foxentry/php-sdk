@@ -13,3 +13,5 @@ jobs:
           php-version: 8.3
       - run: composer install --no-progress --prefer-dist
       - run: vendor/bin/phpunit
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
