@@ -12,6 +12,6 @@ jobs:
         with:
           php-version: 8.3
       - run: composer install --no-progress --prefer-dist
-      - run: vendor/bin/phpunit
+      - run: composer run check-quality
         env:
           API_KEY: ${{ secrets.API_KEY }}
