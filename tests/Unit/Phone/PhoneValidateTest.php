@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Phone;
 
 use Foxentry\Response;
@@ -13,16 +15,16 @@ class PhoneValidateTest extends Base
     /**
      * Test valid phone number validation.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            "numberWithPrefix" => "+420607123456",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform phone number validation.
@@ -40,16 +42,16 @@ class PhoneValidateTest extends Base
     /**
      * Test invalid phone number.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+42060712345"
+            "numberWithPrefix" => "+42060712345",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform phone number validation.
@@ -67,17 +69,17 @@ class PhoneValidateTest extends Base
     /**
      * Test valid phone number with suggestion.
      */
-    public function testValidWithSuggestion()
+    public function testValidWithSuggestion(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
             "prefix" => "+48",
-            "number" => "728984101"
+            "number" => "728984101",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform phone number validation.
@@ -95,17 +97,17 @@ class PhoneValidateTest extends Base
     /**
      * Test invalid phone number with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
             "prefix" => "+421",
-            "number" => "607123456"
+            "number" => "607123456",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform phone number validation.
@@ -123,14 +125,14 @@ class PhoneValidateTest extends Base
     /**
      * Test phone number validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'orderPhoneValidation';
 
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            "numberWithPrefix" => "+420607123456",
         ];
 
         // Perform phone number validation.
@@ -149,11 +151,11 @@ class PhoneValidateTest extends Base
     /**
      * Test phone number validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            "numberWithPrefix" => "+420607123456",
         ];
 
         // Perform phone number validation with client information.
@@ -174,11 +176,11 @@ class PhoneValidateTest extends Base
     /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            "numberWithPrefix" => "+420607123456",
         ];
 
         // Perform name validation with client information.

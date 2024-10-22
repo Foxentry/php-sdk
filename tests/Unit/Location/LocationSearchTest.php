@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,17 +15,17 @@ class LocationSearchTest extends Base
     /**
      * Test valid street search.
      */
-    public function testSearchStreet()
+    public function testSearchStreet(): void
     {
         // Input parameters for street search.
         $query = [
             "type" => "street",
-            "value" => "tha"
+            "value" => "tha",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform street search.
@@ -41,17 +43,17 @@ class LocationSearchTest extends Base
     /**
      * Test valid city search.
      */
-    public function testSearchCity()
+    public function testSearchCity(): void
     {
         // Input parameters for city search.
         $query = [
             "type" => "city",
-            "value" => "pra"
+            "value" => "pra",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform city search.
@@ -69,17 +71,17 @@ class LocationSearchTest extends Base
     /**
      * Test valid street with number search.
      */
-    public function testSearchStreetWithNumber()
+    public function testSearchStreetWithNumber(): void
     {
         // Input parameters for street with number search.
         $query = [
             "type" => "streetWithNumber",
-            "value" => "Jeseniova 56"
+            "value" => "Jeseniova 56",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform street with number search.
@@ -97,17 +99,17 @@ class LocationSearchTest extends Base
     /**
      * Test valid ZIP code search.
      */
-    public function testSearchZip()
+    public function testSearchZip(): void
     {
         // Input parameters for ZIP code search.
         $query = [
             "type" => "zip",
-            "value" => "1"
+            "value" => "1",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform ZIP code search.
@@ -125,17 +127,17 @@ class LocationSearchTest extends Base
     /**
      * Test valid full address search.
      */
-    public function testSearchFull()
+    public function testSearchFull(): void
     {
         // Input parameters for full location search.
         $query = [
             "type" => "full",
-            "value" => "Jeseniova Praha"
+            "value" => "Jeseniova Praha",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform full location search.
@@ -153,7 +155,7 @@ class LocationSearchTest extends Base
     /**
      * Test location data validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
@@ -161,12 +163,12 @@ class LocationSearchTest extends Base
         // Input parameters for street search.
         $query = [
             "type" => "street",
-            "value" => "tha"
+            "value" => "tha",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform location data validation.
@@ -188,17 +190,17 @@ class LocationSearchTest extends Base
     /**
      * Test location data validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Input parameters for street search.
         $query = [
             "type" => "street",
-            "value" => "tha"
+            "value" => "tha",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            "resultsLimit" => 10,
         ];
 
         // Perform location data validation with client information.

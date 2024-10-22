@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Email;
 
 use Foxentry\Response;
@@ -15,14 +17,14 @@ class EmailSearchTest extends Base
     /**
      * Test valid email search.
      */
-    public function testSearchResults()
+    public function testSearchResults(): void
     {
         // Input string for email search.
         $input = 'info@';
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 5
+            "resultsLimit" => 5,
         ];
 
         // Perform email search.
@@ -40,16 +42,16 @@ class EmailSearchTest extends Base
     /**
      *  Test email search when the input parameter is specified as the entire query.
      */
-    public function testQueryInput()
+    public function testQueryInput(): void
     {
         // Query that will be sent to the API for validation.
         $query = [
-            "value" => "info@"
+            "value" => "info@",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 5
+            "resultsLimit" => 5,
         ];
 
         // Perform email validation.

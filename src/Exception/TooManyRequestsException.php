@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry\Exception;
 
 /**
@@ -15,7 +17,6 @@ final class TooManyRequestsException extends FoxentryException
     /**
      * The HTTP status code associated with this exception.
      *
-     * @var int
      */
-    protected $code = 429;
+    protected int $code = 429;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,20 +15,20 @@ class LocationValidateTest extends Base
     /**
      * Test valid location data validation.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Query parameters for validating location data.
         $query = [
             "streetWithNumber" => "Thámova 137/16",
             "city" => "Praha",
-            "zip" => "186 00"
+            "zip" => "186 00",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation.
@@ -44,20 +46,20 @@ class LocationValidateTest extends Base
     /**
      * Test invalid location data.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Query parameters for validating location data.
         $query = [
             "streetWithNumber" => "Thámova 123456789",
             "city" => "Parharlin",
-            "zip" => "457545754"
+            "zip" => "457545754",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation.
@@ -75,20 +77,20 @@ class LocationValidateTest extends Base
     /**
      * Test invalid location data with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Query parameters for validating location data.
         $query = [
             "streetWithNumber" => "Thámova 137",
             "city" => "Praha",
-            "zip" => "18600"
+            "zip" => "18600",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation.
@@ -106,20 +108,20 @@ class LocationValidateTest extends Base
     /**
      * Test invalid location data with suggestion.
      */
-    public function testInvalidWithSuggestion()
+    public function testInvalidWithSuggestion(): void
     {
         // Query parameters for validating location data.
         $query = [
             "streetWithNumber" => "Olšanská 2898/4",
             "city" => "Praha",
-            "zip" => "130 00"
+            "zip" => "130 00",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation.
@@ -137,7 +139,7 @@ class LocationValidateTest extends Base
     /**
      * Test location data validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
@@ -146,14 +148,14 @@ class LocationValidateTest extends Base
         $query = [
             "streetWithNumber" => "Thámova 123456789",
             "city" => "Parharlin",
-            "zip" => "457545754"
+            "zip" => "457545754",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation.
@@ -173,20 +175,20 @@ class LocationValidateTest extends Base
     /**
      * Test location data validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for validating location data.
         $query = [
             "streetWithNumber" => "Thámova 137/16",
             "city" => "Praha",
-            "zip" => "186 00"
+            "zip" => "186 00",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
             "cityFormat" => "minimal",
-            "zipFormat" => true
+            "zipFormat" => true,
         ];
 
         // Perform location data validation with client information.

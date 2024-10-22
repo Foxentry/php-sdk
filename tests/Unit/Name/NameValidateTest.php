@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Name;
 
 use Foxentry\Response;
@@ -13,16 +15,16 @@ class NameValidateTest extends Base
     /**
      * Test valid name validation.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel"
+            "name" => "Pavel",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform name validation.
@@ -40,17 +42,17 @@ class NameValidateTest extends Base
     /**
      * Test invalid name.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Paeeewas"
+            "name" => "Paeeewas",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
-            "validationDepth" => "strict"
+            "validationDepth" => "strict",
         ];
 
         // Perform name validation.
@@ -68,17 +70,17 @@ class NameValidateTest extends Base
     /**
      * Test invalid name with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Palve"
+            "name" => "Palve",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "dataScope" => "basic",
-            "validationDepth" => "strict"
+            "validationDepth" => "strict",
         ];
 
         // Perform name validation.
@@ -96,16 +98,16 @@ class NameValidateTest extends Base
     /**
      * Test valid full name validation.
      */
-    public function tesValidNameSurnameFullDataScope()
+    public function tesValidNameSurnameFullDataScope(): void
     {
         // Full name that will be sent to the API for validation.
         $query = [
-            "nameSurname" => "Pavel Novák"
+            "nameSurname" => "Pavel Novák",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "full"
+            "dataScope" => "full",
         ];
 
         // Perform full name validation.
@@ -123,14 +125,14 @@ class NameValidateTest extends Base
     /**
      * Test name validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
 
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel"
+            "name" => "Pavel",
         ];
 
         // Perform name validation.
@@ -149,16 +151,16 @@ class NameValidateTest extends Base
     /**
      * Test name validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel"
+            "name" => "Pavel",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform name validation with client information.
@@ -180,16 +182,16 @@ class NameValidateTest extends Base
     /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel"
+            "name" => "Pavel",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform name validation with client information.

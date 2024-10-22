@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,18 +15,18 @@ class LocationGetTest extends Base
     /**
      * Test retrieval of full data scope by internal ID.
      */
-    public function testGetFullDataScopeByInternalID()
+    public function testGetFullDataScopeByInternalID(): void
     {
         // Query parameters for retrieving location data by internal ID.
         $query = [
             "country" => "CZ",
-            "id" => "d2ade877-1e95-4a83-baa6-5431ce5b3ca8"
+            "id" => "d2ade877-1e95-4a83-baa6-5431ce5b3ca8",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "idType" => "internal",
-            "dataScope" => "full"
+            "dataScope" => "full",
         ];
 
         // Perform location data retrieval.
@@ -40,18 +42,18 @@ class LocationGetTest extends Base
     /**
      * Test retrieval of full data scope by external ID.
      */
-    public function getFullDataScopeByExternalID()
+    public function getFullDataScopeByExternalID(): void
     {
         // Query parameters for retrieving location data by external ID.
         $query = [
             "country" => "CZ",
-            "id" => "22349995"
+            "id" => "22349995",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "idType" => "external",
-            "dataScope" => "full"
+            "dataScope" => "full",
         ];
 
         // Perform location data retrieval.
@@ -67,7 +69,7 @@ class LocationGetTest extends Base
     /**
      * Test location data retrieval with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
@@ -75,13 +77,13 @@ class LocationGetTest extends Base
         // Query parameters for location data retrieval.
         $query = [
             "country" => "CZ",
-            "id" => "22349995"
+            "id" => "22349995",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "idType" => "external",
-            "dataScope" => "full"
+            "dataScope" => "full",
         ];
 
         // Perform location data retrieval.
@@ -101,18 +103,18 @@ class LocationGetTest extends Base
     /**
      * Test location data retrieval with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for location data retrieval.
         $query = [
             "country" => "CZ",
-            "id" => "22349995"
+            "id" => "22349995",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "idType" => "external",
-            "dataScope" => "full"
+            "dataScope" => "full",
         ];
 
         // Perform location data retrieval with client information.
@@ -134,18 +136,18 @@ class LocationGetTest extends Base
     /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
             "country" => "CZ",
-            "id" => "22349995"
+            "id" => "22349995",
         ];
 
         // Options that will be sent within the request.
         $options = [
             "idType" => "external",
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform name validation with client information.

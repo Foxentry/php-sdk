@@ -1,9 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry\Resource;
 
+use Foxentry\Exception\BadRequestException;
+use Foxentry\Exception\ForbiddenException;
+use Foxentry\Exception\FoxentryException;
+use Foxentry\Exception\NotFoundException;
+use Foxentry\Exception\PaymentRequiredException;
+use Foxentry\Exception\ServerErrorException;
+use Foxentry\Exception\TooManyRequestsException;
+use Foxentry\Exception\UnauthorizedException;
 use Foxentry\Request;
 use Foxentry\Response;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Base resource class for handling common resource functionality.
@@ -29,8 +40,9 @@ class BaseResource
      *
      * @param bool $value Whether to include request details (default: true)
      */
-    public function includeRequestDetails( bool $value = true ): self {
-        $this->request->setHeader( "Foxentry-Include-Request-Details", $value );
+    public function includeRequestDetails(bool $value = true): self
+    {
+        $this->request->setHeader("Foxentry-Include-Request-Details", $value);
         return $this;
     }
 
@@ -50,7 +62,7 @@ class BaseResource
     /**
      * Set options for the resource request.
      *
-     * @param array $options The options to set
+     * @param array<string, mixed> $options The options to set
      *
      * @return BaseResource Returns $this for method chaining
      */
@@ -104,10 +116,18 @@ class BaseResource
     /**
      * Send a request to the API with the given query parameters.
      *
-     * @param array $query The query parameters for the request
+     * @param array<string, mixed> $query The query parameters for the request
      *
      * @return Response The response from the API
-     * @throws \Exception
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     protected function send(array $query): Response
     {

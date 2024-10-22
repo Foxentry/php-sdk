@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry;
 
 /**
@@ -11,25 +13,23 @@ class Response
 {
     /**
      * Data in the response.
-     *
-     * @var mixed
      */
-    private $data;
+    private mixed $data;
 
     /**
      * Headers of the response.
      *
-     * @var array
+     * @var string[][]
      */
-    private array $headers = [];
+    private array $headers;
 
     /**
      * Response constructor.
      *
      * @param mixed $response The response data
-     * @param array $headers The response headers
+     * @param string[][] $headers The response headers
      */
-    public function __construct($response, array $headers)
+    public function __construct(mixed $response, array $headers)
     {
         if (!is_object($response)) {
             $response = json_decode($response);
@@ -44,7 +44,7 @@ class Response
      *
      * @return mixed|null The status of the response
      */
-    public function getStatus()
+    public function getStatus(): mixed
     {
         return $this->data->status ?? null;
     }
@@ -52,7 +52,7 @@ class Response
     /**
      * Get headers received from the API response.
      *
-     * @return array Response headers
+     * @return string[][] Response headers
      */
     public function getHeaders(): array
     {
@@ -64,7 +64,8 @@ class Response
      *
      * @return int Rate limit number
      */
-    public function getRateLimit(): int {
+    public function getRateLimit(): int
+    {
         return reset($this->headers['foxentry-rate-limit']);
     }
 
@@ -73,7 +74,8 @@ class Response
      *
      * @return int Time period in seconds of how long it will take before the rate limit is restored
      */
-    public function getRateLimitPeriod(): int {
+    public function getRateLimitPeriod(): int
+    {
         return reset($this->headers['foxentry-rate-limit-period']);
     }
 
@@ -82,7 +84,8 @@ class Response
      *
      * @return int Remaining rate limit
      */
-    public function getRateLimitRemaining(): int {
+    public function getRateLimitRemaining(): int
+    {
         return reset($this->headers['foxentry-rate-limit-remaining']);
     }
 
@@ -91,8 +94,9 @@ class Response
      *
      * @return ?float Remaining daily credits, null if no limit is set
      */
-    public function getDailyCreditsLeft(): ?float {
-        if (!isset($this->headers['foxentry-daily-credits-left'])){
+    public function getDailyCreditsLeft(): ?float
+    {
+        if (!isset($this->headers['foxentry-daily-credits-left'])) {
             return null;
         }
 
@@ -104,8 +108,9 @@ class Response
      *
      * @return ?int Daily credits limit, null if no limit is set
      */
-    public function getDailyCreditsLimit(): ?int {
-        if (!isset($this->headers['foxentry-daily-credits-limit'])){
+    public function getDailyCreditsLimit(): ?int
+    {
+        if (!isset($this->headers['foxentry-daily-credits-limit'])) {
             return null;
         }
 
@@ -117,7 +122,8 @@ class Response
      *
      * @return float API version
      */
-    public function getApiVersion(): float {
+    public function getApiVersion(): float
+    {
         return reset($this->headers['foxentry-api-version']);
     }
 
@@ -126,7 +132,7 @@ class Response
      *
      * @return mixed|null The request details or null if not present in the response
      */
-    public function getRequest()
+    public function getRequest(): mixed
     {
         return $this->data->request ?? null;
     }
@@ -136,7 +142,7 @@ class Response
      *
      * @return mixed|null The response data or null if not present in the response
      */
-    public function getResponse()
+    public function getResponse(): mixed
     {
         return $this->data->response ?? null;
     }
@@ -146,11 +152,12 @@ class Response
      *
      * @return mixed|null The result or null if not present in the response
      */
-    public function getResult()
+    public function getResult(): mixed
     {
         $result = $this->getResponse()->result ?? null;
-        if(empty($result))
+        if (empty($result)) {
             $result = $this->getResponse()->results ?? null;
+        }
 
         return $result;
     }
@@ -160,7 +167,7 @@ class Response
      *
      * @return mixed|null The corrected result or null if not present in the response
      */
-    public function getResultCorrected()
+    public function getResultCorrected(): mixed
     {
         return $this->getResponse()->resultCorrected ?? null;
     }
@@ -170,7 +177,7 @@ class Response
      *
      * @return mixed|null The suggestions or null if not present in the response
      */
-    public function getSuggestions()
+    public function getSuggestions(): mixed
     {
         return $this->getResponse()->suggestions ?? null;
     }
@@ -180,7 +187,7 @@ class Response
      *
      * @return mixed|null The errors or null if not present in the response
      */
-    public function getErrors()
+    public function getErrors(): mixed
     {
         return $this->data->errors ?? null;
     }

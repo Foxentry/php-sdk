@@ -1,8 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry\Resource;
 
+use Foxentry\Exception\BadRequestException;
+use Foxentry\Exception\ForbiddenException;
+use Foxentry\Exception\FoxentryException;
+use Foxentry\Exception\NotFoundException;
+use Foxentry\Exception\PaymentRequiredException;
+use Foxentry\Exception\ServerErrorException;
+use Foxentry\Exception\TooManyRequestsException;
+use Foxentry\Exception\UnauthorizedException;
 use Foxentry\Response;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Location resource class for validating, searching, and retrieving information about addresses
@@ -14,8 +25,19 @@ final class Location extends BaseResource
     /**
      * Validate an address.
      *
-     * @param array $query Query parameters for the validation request
+     * @param array<string, mixed> $query Query parameters for the validation request
+     *
      * @return Response The response from the validation request
+     *
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     public function validate(array $query): Response
     {
@@ -25,9 +47,19 @@ final class Location extends BaseResource
     /**
      * Search for a location.
      *
-     * @param array $query Query parameters for the search request
+     * @param array<string, mixed> $query Query parameters for the search request
      *
      * @return Response The response from the API
+     *
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     public function search(array $query): Response
     {
@@ -37,9 +69,19 @@ final class Location extends BaseResource
     /**
      * Get location details.
      *
-     * @param array $query Query parameters for the get request
+     * @param array<string, mixed> $query Query parameters for the get request
      *
      * @return Response The response from the API
+     *
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     public function get(array $query): Response
     {
@@ -49,9 +91,19 @@ final class Location extends BaseResource
     /**
      * Localize a location.
      *
-     * @param array $query Query parameters for the localize request
+     * @param array<string, mixed> $query Query parameters for the localize request
      *
      * @return Response The response from the API
+     *
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     public function localize(array $query): Response
     {
@@ -61,12 +113,22 @@ final class Location extends BaseResource
     /**
      * Send a request to the API with the given query parameters.
      *
-     * @param array $query Query parameters for the request
+     * @param array<string, mixed> $query Query parameters for the request
      *
      * @return Response The response from the API
+     *
+     * @throws TooManyRequestsException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws PaymentRequiredException
+     * @throws ServerErrorException
+     * @throws UnauthorizedException
+     * @throws FoxentryException
+     * @throws GuzzleException
      */
     private function sendRequest(array $query): Response
     {
-        return parent::send($query);
+        return $this->send($query);
     }
 }

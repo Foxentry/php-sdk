@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Foxentry\Exception;
 
 use GuzzleHttp\Exception\RequestException;
@@ -16,9 +19,8 @@ class FoxentryException extends \Exception
     /**
      * Create a FoxentryException based on the given RequestException.
      *
-     * @param RequestException $e
      */
-    public static function fromRequestException(RequestException $e)
+    public static function fromRequestException(RequestException $e): self
     {
         // Check if the exception has a response
         if ($e->hasResponse()) {
@@ -41,7 +43,9 @@ class FoxentryException extends \Exception
                     $foxentryException = new NotFoundException("Resource or endpoint requested is not found on the server.");
                     break;
                 case 429:
-                    $foxentryException = new TooManyRequestsException("Too many requests have been made in the given time frame or the daily limit has been reached.");
+                    $foxentryException = new TooManyRequestsException(
+                        "Too many requests have been made in the given time frame or the daily limit has been reached."
+                    );
                     break;
                 case 500:
                     $foxentryException = new ServerErrorException("Internal server error.");
@@ -58,7 +62,7 @@ class FoxentryException extends \Exception
         }
 
         // Return a generic exception with the original exception message
-        return new self( "Exception: " . $e->getMessage());
+        return new self("Exception: " . $e->getMessage());
     }
 
     public function setResponse(ResponseInterface $response): self
@@ -67,7 +71,8 @@ class FoxentryException extends \Exception
         return $this;
     }
 
-    public function getResponse(): ?ResponseInterface {
+    public function getResponse(): ?ResponseInterface
+    {
         return $this->response;
     }
 }

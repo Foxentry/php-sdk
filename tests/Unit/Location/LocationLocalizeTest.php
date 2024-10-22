@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,19 +15,19 @@ class LocationLocalizeTest extends Base
     /**
      * Test localization of location data based on coordinates.
      */
-    public function testLocalizationResults()
+    public function testLocalizationResults(): void
     {
         // Query parameters for localizing location data.
         $query = [
             "lat" => 50.0919999,
-            "lon" => 14.4527403
+            "lon" => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
             "resultsLimit" => 10,
             "radius" => 15,
-            "acceptNearest" => false
+            "acceptNearest" => false,
         ];
 
         // Perform location data localization.
@@ -43,7 +45,7 @@ class LocationLocalizeTest extends Base
     /**
      * Test location data localization with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
@@ -51,14 +53,14 @@ class LocationLocalizeTest extends Base
         // Query parameters for localizing location data.
         $query = [
             "lat" => 50.0919999,
-            "lon" => 14.4527403
+            "lon" => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
             "resultsLimit" => 10,
             "radius" => 15,
-            "acceptNearest" => false
+            "acceptNearest" => false,
         ];
 
         // Perform location data localization.
@@ -80,19 +82,19 @@ class LocationLocalizeTest extends Base
     /**
      * Test location data localization with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for localizing location data.
         $query = [
             "lat" => 50.0919999,
-            "lon" => 14.4527403
+            "lon" => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
             "resultsLimit" => 10,
             "radius" => 15,
-            "acceptNearest" => false
+            "acceptNearest" => false,
         ];
 
         // Perform location data localization with client information.

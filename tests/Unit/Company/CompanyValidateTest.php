@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,17 +15,17 @@ class CompanyValidateTest extends Base
     /**
      * Test valid company data.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Query parameters for validating company data.
         $query = [
             "name" => "AVANTRO s.r.o.",
-            "registrationNumber" => "04997476"
+            "registrationNumber" => "04997476",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform company data validation.
@@ -41,12 +43,12 @@ class CompanyValidateTest extends Base
     /**
      * Test invalid company data.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Query parameters for validating company data.
         $query = [
             "name" => "AVANTRO",
-            "registrationNumber" => "25547"
+            "registrationNumber" => "25547",
         ];
 
         // Options that will be sent within the request.
@@ -69,12 +71,12 @@ class CompanyValidateTest extends Base
     /**
      * Test invalid company data with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Query parameters for validating company data.
         $query = [
             "name" => "AVANTRO",
-            "registrationNumber" => "04997476"
+            "registrationNumber" => "04997476",
         ];
 
         // Options that will be sent within the request.
@@ -97,16 +99,16 @@ class CompanyValidateTest extends Base
     /**
      * Test invalid company data with suggestion.
      */
-    public function testInvalidWithSuggestion()
+    public function testInvalidWithSuggestion(): void
     {
         // Query parameters for validating company data.
         $query = [
-            "registrationNumber" => "0499747"
+            "registrationNumber" => "0499747",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform company data validation.
@@ -124,7 +126,7 @@ class CompanyValidateTest extends Base
     /**
      * Test company data validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
@@ -132,12 +134,12 @@ class CompanyValidateTest extends Base
         // Query parameters for validating company data.
         $query = [
             "name" => "AVANTRO s.r.o.",
-            "registrationNumber" => "04997476"
+            "registrationNumber" => "04997476",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform company data validation.
@@ -157,17 +159,17 @@ class CompanyValidateTest extends Base
     /**
      * Test company data validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for validating company data.
         $query = [
             "name" => "AVANTRO s.r.o.",
-            "registrationNumber" => "04997476"
+            "registrationNumber" => "04997476",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            "dataScope" => "basic",
         ];
 
         // Perform company data validation with client information.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Email;
 
 use Foxentry\Response;
@@ -13,14 +15,14 @@ class EmailValidateTest extends Base
     /**
      * Test valid email validation.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Email that will be sent to the API for validation.
         $email = "info@foxentry.com";
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -38,14 +40,14 @@ class EmailValidateTest extends Base
     /**
      * Test invalid email.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Email that will be sent to the API for validation.
         $email = "invalidUser@foxentry.com";
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -63,14 +65,14 @@ class EmailValidateTest extends Base
     /**
      * Test invalid email with suggestion.
      */
-    public function testInvalidWithSuggestion()
+    public function testInvalidWithSuggestion(): void
     {
         // Email that will be sent to the API for validation.
         $email = "info@gmali.com";
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -88,14 +90,14 @@ class EmailValidateTest extends Base
     /**
      * Test invalid email with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Email that will be sent to the API for validation.
         $email = "info@foxentry,com"; // Notice the "," instead of "." before the com
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -113,14 +115,14 @@ class EmailValidateTest extends Base
     /**
      * Test invalid email with partial correction.
      */
-    public function testInvalidWithPartialCorrection()
+    public function testInvalidWithPartialCorrection(): void
     {
         // Email that will be sent to the API for validation.
         $email = "infogmail.com";
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -138,7 +140,7 @@ class EmailValidateTest extends Base
     /**
      * Test disallowed disposable email.
      */
-    public function testDisallowedDisposable()
+    public function testDisallowedDisposable(): void
     {
         // Email that will be sent to the API for validation.
         $email = "rasini3451@naymedia.com";
@@ -164,7 +166,7 @@ class EmailValidateTest extends Base
     /**
      * Test disallowed freemail.
      */
-    public function testDisallowedFreemails()
+    public function testDisallowedFreemails(): void
     {
         // Email that will be sent to the API for validation.
         $email = "info@gmail.com";
@@ -190,7 +192,7 @@ class EmailValidateTest extends Base
     /**
      * Test email validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'orderEmailValidation';
@@ -214,7 +216,7 @@ class EmailValidateTest extends Base
     /**
      * Test email validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Email that will be sent to the API for validation.
         $email = 'info@foxentry.com';
@@ -237,16 +239,16 @@ class EmailValidateTest extends Base
     /**
      * Test email validation when the input parameter is specified as the entire query.
      */
-    public function testQueryInput()
+    public function testQueryInput(): void
     {
         // Query that will be sent to the API for validation.
         $query = [
-            "email" => "info@foxentry.com"
+            "email" => "info@foxentry.com",
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation.
@@ -260,14 +262,14 @@ class EmailValidateTest extends Base
     /**
      * Test of receiving response headers
      */
-    public function testResponseHeaders()
+    public function testResponseHeaders(): void
     {
         // Email that will be sent to the API for validation.
         $email = "info@foxentry.com";
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            "validationType" => "extended",
         ];
 
         // Perform email validation and get headers of the response.
@@ -290,7 +292,7 @@ class EmailValidateTest extends Base
     /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
          $email = "info@foxentry.com";
