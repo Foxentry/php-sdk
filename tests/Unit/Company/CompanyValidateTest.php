@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Location;
+namespace Tests\Unit\Company;
 
 use Foxentry\Response;
 use Tests\Base;
@@ -29,7 +29,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company()->setOptions($options)->validate($query);
+        $response = self::$api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -57,7 +57,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company()->setOptions($options)->validate($query);
+        $response = self::$api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -85,7 +85,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company()->setOptions($options)->validate($query);
+        $response = self::$api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -112,7 +112,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company()->setOptions($options)->validate($query);
+        $response = self::$api->company()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -143,7 +143,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->validate($query);
@@ -173,7 +173,7 @@ class CompanyValidateTest extends Base
         ];
 
         // Perform company data validation with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")

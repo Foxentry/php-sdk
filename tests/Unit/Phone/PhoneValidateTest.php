@@ -28,15 +28,15 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
-        $this->assertNotEmpty($result->data);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
+        self::assertEquals("valid", $result->proposal);
+        self::assertNotEmpty($result->data);
     }
 
     /**
@@ -55,15 +55,15 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
-        $this->assertNotEmpty($result->errors);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertFalse($result->isValid);
+        self::assertEquals("invalid", $result->proposal);
+        self::assertNotEmpty($result->errors);
     }
 
     /**
@@ -83,15 +83,15 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
-        $this->assertEquals("validWithSuggestion", $result->proposal);
-        $this->assertNotEmpty($response->getSuggestions());
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
+        self::assertEquals("validWithSuggestion", $result->proposal);
+        self::assertNotEmpty($response->getSuggestions());
     }
 
     /**
@@ -111,15 +111,15 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
-        $this->assertNotEmpty($response->getResultCorrected());
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertFalse($result->isValid);
+        self::assertEquals("invalidWithCorrection", $result->proposal);
+        self::assertNotEmpty($response->getResultCorrected());
     }
 
     /**
@@ -136,16 +136,16 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->setCustomId($customRequestID)
             ->validate($query);
 
         $request = $response->getRequest();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertNotEmpty($request->customId);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertNotEmpty($request->customId);
     }
 
     /**
@@ -159,7 +159,7 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform phone number validation with client information.
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
             ->setClientLocation(50.073658, 14.418540)
@@ -168,9 +168,9 @@ class PhoneValidateTest extends Base
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
     }
 
     /**
@@ -184,20 +184,20 @@ class PhoneValidateTest extends Base
         ];
 
         // Perform name validation with client information.
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->includeRequestDetails()
             ->validate($query);
 
         $result = $response->getRequest();
 
 
-        $this->assertObjectHasProperty('query', $result);
+        self::assertObjectHasProperty('query', $result);
 
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->validate($query);
 
         $result = $response->getRequest();
 
-        $this->assertObjectNotHasProperty('query', $result);
+        self::assertObjectNotHasProperty('query', $result);
     }
 }

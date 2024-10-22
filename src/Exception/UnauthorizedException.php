@@ -17,6 +17,9 @@ final class UnauthorizedException extends FoxentryException
     /**
      * The HTTP status code associated with this exception.
      *
+     * @var int
      */
-    protected int $code = 401;
+    // Native typehint missing, because definition needs to match the native Exception class.
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+    protected $code = 401;
 }

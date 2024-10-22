@@ -40,7 +40,7 @@ class BaseResource
      *
      * @param bool $value Whether to include request details (default: true)
      */
-    public function includeRequestDetails(bool $value = true): self
+    public function includeRequestDetails(bool $value = true): static
     {
         $this->request->setHeader("Foxentry-Include-Request-Details", $value);
         return $this;
@@ -51,9 +51,9 @@ class BaseResource
      *
      * @param string $id The custom ID to set
      *
-     * @return BaseResource Returns $this for method chaining
+     * @return $this Returns $this for method chaining
      */
-    public function setCustomId(string $id): BaseResource
+    public function setCustomId(string $id): self
     {
         $this->request->setCustomId($id);
         return $this;
@@ -64,9 +64,9 @@ class BaseResource
      *
      * @param array<string, mixed> $options The options to set
      *
-     * @return BaseResource Returns $this for method chaining
+     * @return $this Returns $this for method chaining
      */
-    public function setOptions(array $options): BaseResource
+    public function setOptions(array $options): self
     {
         $this->request->setOptions($options);
         return $this;
@@ -77,9 +77,9 @@ class BaseResource
      *
      * @param string $ip The client IP address
      *
-     * @return BaseResource Returns $this for method chaining
+     * @return $this Returns $this for method chaining
      */
-    public function setClientIP(string $ip): BaseResource
+    public function setClientIP(string $ip): self
     {
         $this->request->setClientIP($ip);
         return $this;
@@ -90,10 +90,10 @@ class BaseResource
      *
      * @param string $country The client country code in format ISO-3166-1 alpha-2.
      *
-     * @return BaseResource Returns $this for method chaining
+     * @return $this Returns $this for method chaining
      * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 ISO-3166-1 alpha-2 country code format
      */
-    public function setClientCountry(string $country): BaseResource
+    public function setClientCountry(string $country): self
     {
         $this->request->setClientCountry($country);
         return $this;
@@ -105,9 +105,9 @@ class BaseResource
      * @param float $lon The client's longitude
      * @param float $lat The client's latitude
      *
-     * @return BaseResource Returns $this for method chaining
+     * @return $this Returns $this for method chaining
      */
-    public function setClientLocation(float $lat, float $lon): BaseResource
+    public function setClientLocation(float $lat, float $lon): self
     {
         $this->request->setClientLocation($lat, $lon);
         return $this;

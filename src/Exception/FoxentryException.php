@@ -24,7 +24,7 @@ class FoxentryException extends \Exception
     {
         // Check if the exception has a response
         if ($e->hasResponse()) {
-            $statusCode = $e->getResponse()->getStatusCode();
+            $statusCode = $e->getResponse()?->getStatusCode() ?? -1;
             // Switch based on the status code of the response
             switch ($statusCode) {
                 case 400:
@@ -55,9 +55,10 @@ class FoxentryException extends \Exception
                     break;
                 default:
                     // Handle the rest with generic FoxentryException class
-                    $foxentryException = new self("Request exception: " . $e->getResponse()->getBody()->getContents(), $statusCode);
+                    $foxentryException = new self("Request exception: " . $e->getMessage(), $statusCode);
                     break;
             }
+
             return  $foxentryException->setResponse($e->getResponse());
         }
 
@@ -65,7 +66,7 @@ class FoxentryException extends \Exception
         return new self("Exception: " . $e->getMessage());
     }
 
-    public function setResponse(ResponseInterface $response): self
+    public function setResponse(?ResponseInterface $response): self
     {
         $this->response = $response;
         return $this;

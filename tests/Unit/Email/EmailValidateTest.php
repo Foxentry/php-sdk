@@ -26,7 +26,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -51,7 +51,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -76,7 +76,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -101,7 +101,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -126,7 +126,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -151,7 +151,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -177,7 +177,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $result = $response->getResult();
 
         // Assertions.
@@ -201,7 +201,7 @@ class EmailValidateTest extends Base
         $email = 'info@foxentry.com';
 
         // Perform email validation.
-        $response = $this->api->email()
+        $response = self::$api->email()
             ->setCustomId($customRequestID)
             ->validate($email);
 
@@ -222,7 +222,7 @@ class EmailValidateTest extends Base
         $email = 'info@foxentry.com';
 
         // Perform email validation with client information.
-        $response = $this->api->email()
+        $response = self::$api->email()
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
             ->setClientLocation(50.073658, 14.418540)
@@ -252,7 +252,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->validate($query);
+        $response = self::$api->email()->setOptions($options)->validate($query);
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
@@ -273,7 +273,7 @@ class EmailValidateTest extends Base
         ];
 
         // Perform email validation and get headers of the response.
-        $response = $this->api->email()->setOptions($options)->validate($email);
+        $response = self::$api->email()->setOptions($options)->validate($email);
         $headers = $response->getHeaders();
         $rateLimit = $response->getRateLimit();
         $rateLimitPeriod = $response->getRateLimitPeriod();
@@ -298,7 +298,7 @@ class EmailValidateTest extends Base
          $email = "info@foxentry.com";
 
         // Perform name validation with client information.
-        $response = $this->api->email()
+        $response = self::$api->email()
             ->includeRequestDetails()
             ->validate($email);
 
@@ -307,7 +307,7 @@ class EmailValidateTest extends Base
 
         $this->assertObjectHasProperty('query', $result);
 
-        $response = $this->api->email()
+        $response = self::$api->email()
             ->validate($email);
 
         $result = $response->getRequest();

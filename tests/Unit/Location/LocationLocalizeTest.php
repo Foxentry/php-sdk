@@ -31,7 +31,7 @@ class LocationLocalizeTest extends Base
         ];
 
         // Perform location data localization.
-        $response = $this->api->location()->setOptions($options)->localize($query);
+        $response = self::$api->location()->setOptions($options)->localize($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -64,7 +64,7 @@ class LocationLocalizeTest extends Base
         ];
 
         // Perform location data localization.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->localize($query);
@@ -98,7 +98,7 @@ class LocationLocalizeTest extends Base
         ];
 
         // Perform location data localization with client information.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")

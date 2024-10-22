@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Location;
+namespace Tests\Unit\Company;
 
 use Foxentry\Response;
 use Tests\Base;
@@ -29,7 +29,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -81,7 +81,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -110,7 +110,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->get($query);
@@ -140,7 +140,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform company data retrieval with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->setClientCountry("CZ")
             ->setClientIP("127.0.0.1")
@@ -172,7 +172,7 @@ class CompanyGetTest extends Base
         ];
 
         // Perform name validation with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->includeRequestDetails()
             ->get($query);
@@ -182,7 +182,7 @@ class CompanyGetTest extends Base
 
         $this->assertObjectHasProperty('query', $result);
 
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->get($query);
 

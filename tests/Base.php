@@ -12,12 +12,11 @@ class Base extends TestCase
     /**
      * @var ApiClient $api Foxentry API client.
      */
-    protected ApiClient $api;
+    protected static ApiClient $api;
 
-    public function __construct(string $name)
+    public static function setUpBeforeClass(): void
     {
-        parent::__construct($name);
-        $this->assertNotEmpty($_ENV['API_KEY'], 'You didn\'t set your API key in .env file');
-        $this->api = new ApiClient($_ENV['API_KEY']);
+        self::assertNotEmpty($_ENV['API_KEY'], 'You didn\'t set your API key in .env file');
+        self::$api = new ApiClient($_ENV['API_KEY']);
     }
 }

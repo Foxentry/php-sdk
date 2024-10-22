@@ -66,7 +66,7 @@ class Response
      */
     public function getRateLimit(): int
     {
-        return reset($this->headers['foxentry-rate-limit']);
+        return (int) reset($this->headers['foxentry-rate-limit']);
     }
 
     /**
@@ -76,7 +76,7 @@ class Response
      */
     public function getRateLimitPeriod(): int
     {
-        return reset($this->headers['foxentry-rate-limit-period']);
+        return (int) reset($this->headers['foxentry-rate-limit-period']);
     }
 
     /**
@@ -86,7 +86,7 @@ class Response
      */
     public function getRateLimitRemaining(): int
     {
-        return reset($this->headers['foxentry-rate-limit-remaining']);
+        return (int) reset($this->headers['foxentry-rate-limit-remaining']);
     }
 
     /**
@@ -100,7 +100,7 @@ class Response
             return null;
         }
 
-        return reset($this->headers['foxentry-daily-credits-left']);
+        return (float) reset($this->headers['foxentry-daily-credits-left']);
     }
 
     /**
@@ -114,7 +114,7 @@ class Response
             return null;
         }
 
-        return reset($this->headers['foxentry-daily-credits-limit']);
+        return (int) reset($this->headers['foxentry-daily-credits-limit']);
     }
 
     /**
@@ -124,7 +124,7 @@ class Response
      */
     public function getApiVersion(): float
     {
-        return reset($this->headers['foxentry-api-version']);
+        return (float) reset($this->headers['foxentry-api-version']);
     }
 
     /**

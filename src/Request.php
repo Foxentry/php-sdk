@@ -94,8 +94,9 @@ class Request
     /**
      * Information about the client making the request (optional).
      *
+     * @var array<string, mixed>
      */
-    private ?object $client = null;
+    private ?array $client = null;
 
     public function __construct(string $apiVersion, ?string $apiKey)
     {
@@ -183,11 +184,11 @@ class Request
             throw new \InvalidArgumentException("The specified IP address is not valid.");
         }
 
-        if (empty($this->client)) {
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
         }
 
-        $this->client->ip = $ip;
+        $this->client['ip'] = $ip;
     }
 
     /**
@@ -201,11 +202,11 @@ class Request
             throw new \InvalidArgumentException("The provided country code does not conform to the ISO-3166-1 alpha-2 format.");
         }
 
-        if (empty($this->client)) {
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
         }
 
-        $this->client->country = $country;
+        $this->client['country'] = $country;
     }
 
     /**
@@ -221,11 +222,11 @@ class Request
             "lon" => $lon,
         ];
 
-        if (empty($this->client)) {
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
         }
 
-        $this->client->location = (object)$location;
+        $this->client['location'] = $location;
     }
 
     /**

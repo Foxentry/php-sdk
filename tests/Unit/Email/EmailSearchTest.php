@@ -28,7 +28,7 @@ class EmailSearchTest extends Base
         ];
 
         // Perform email search.
-        $response = $this->api->email()->setOptions($options)->search($input);
+        $response = self::$api->email()->setOptions($options)->search($input);
         $result = $response->getResult();
 
         // Assertions.
@@ -55,7 +55,7 @@ class EmailSearchTest extends Base
         ];
 
         // Perform email validation.
-        $response = $this->api->email()->setOptions($options)->search($query);
+        $response = self::$api->email()->setOptions($options)->search($query);
 
         // Assertions.
         $this->assertInstanceOf(Response::class, $response);
