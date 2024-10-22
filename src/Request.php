@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry;
 
 use Foxentry\Exception\BadRequestException;
-use Foxentry\Exception\TooManyRequestsException;
 use Foxentry\Exception\ForbiddenException;
 use Foxentry\Exception\FoxentryException;
 use Foxentry\Exception\NotFoundException;
 use Foxentry\Exception\PaymentRequiredException;
 use Foxentry\Exception\ServerErrorException;
+use Foxentry\Exception\TooManyRequestsException;
 use Foxentry\Exception\UnauthorizedException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
@@ -24,89 +26,83 @@ class Request
     /**
      * The base URI for the Foxentry API.
      *
-     * @var string
      */
-    private string $baseUri = "https://api.foxentry.com/";
+    private string $baseUri = 'https://api.foxentry.com/';
 
     /**
      * The HTTP request method (e.g., "GET" or "POST").
      *
-     * @var string
      */
-    private string $method = "POST";
+    private string $method = 'POST';
 
     /**
      * The HTTP headers for the API request.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private array $headers = [
-        "Foxentry-Include-Request-Details" => false,
-        "Content-Type" => "application/json",
-        "Accept" => "application/json",
-        "User-Agent" => "FoxentrySdk (PHP/2.3.0; ApiReference/2.0)"
+        'Foxentry-Include-Request-Details' => false,
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json',
+        'User-Agent' => 'FoxentrySdk (PHP/2.3.0; ApiReference/2.0)',
     ];
 
     /**
      * The request body data to send to the API.
      *
-     * @var object
      */
     private object $body;
 
     /**
      * A custom ID for the request (optional).
      *
-     * @var string|null
      */
     private ?string $customId = null;
 
     /**
      * The query parameters for the API request.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private array $query;
 
     /**
      * Additional options for the API request (optional).
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $options = null;
 
     /**
      * The API endpoint to send the request to.
      *
-     * @var string
      */
     private string $endpoint;
 
     /**
      * The HTTP client for making requests.
      *
-     * @var HttpClient
      */
     private HttpClient $httpClient;
 
     /**
      * The API key used for authentication.
      *
-     * @var string
      */
     private string $apiKey;
 
     /**
      * Information about the client making the request (optional).
      *
-     * @var object|null
+     * @var array<string, mixed>
      */
-    private ?object $client = null;
+    private ?array $client = null;
 
-    public function __construct(string $apiVersion, ?string $apiKey) {
-        $this->setHeader("Api-Version", $apiVersion);
+    public function __construct(string $apiVersion, ?string $apiKey)
+    {
+        $this->setHeader('Api-Version', $apiVersion);
 
-        if ($apiKey){
+        if ($apiKey) {
             $this->setAuth($apiKey);
         }
 
@@ -123,7 +119,7 @@ class Request
     public function setAuth(string $apiKey): void
     {
         $this->apiKey = $apiKey;
-        $this->setHeader("Authorization", "Bearer $this->apiKey");
+        $this->setHeader('Authorization', sprintf('Bearer %s', $this->apiKey));
     }
 
     /**
@@ -132,7 +128,7 @@ class Request
      * @param string $key The header key
      * @param mixed $value The header value
      */
-    public function setHeader(string $key, $value): void
+    public function setHeader(string $key, mixed $value): void
     {
         $this->headers[$key] = $value;
     }
@@ -150,7 +146,7 @@ class Request
     /**
      * Set query parameters for the request.
      *
-     * @param array $query The query parameters to set
+     * @param array<string, mixed> $query The query parameters to set
      */
     public function setQuery(array $query): void
     {
@@ -160,7 +156,7 @@ class Request
     /**
      * Set options for the request.
      *
-     * @param array $options The options to set
+     * @param array<string, mixed> $options The options to set
      */
     public function setOptions(array $options): void
     {
@@ -184,13 +180,15 @@ class Request
      */
     public function setClientIP(string $ip): void
     {
-        if(!filter_var($ip, FILTER_VALIDATE_IP))
-            throw new \InvalidArgumentException("The specified IP address is not valid.");
+        if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+            throw new \InvalidArgumentException('The specified IP address is not valid.');
+        }
 
-        if(empty($this->client))
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
+        }
 
-        $this->client->ip = $ip;
+        $this->client['ip'] = $ip;
     }
 
     /**
@@ -200,13 +198,15 @@ class Request
      */
     public function setClientCountry(string $country): void
     {
-        if(strlen($country) != 2)
-            throw new \InvalidArgumentException("The provided country code does not conform to the ISO-3166-1 alpha-2 format.");
+        if (strlen($country) != 2) {
+            throw new \InvalidArgumentException('The provided country code does not conform to the ISO-3166-1 alpha-2 format.');
+        }
 
-        if(empty($this->client))
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
+        }
 
-        $this->client->country = $country;
+        $this->client['country'] = $country;
     }
 
     /**
@@ -218,14 +218,15 @@ class Request
     public function setClientLocation(float $lat, float $lon): void
     {
         $location = [
-            "lat" => $lat,
-            "lon" => $lon,
+            'lat' => $lat,
+            'lon' => $lon,
         ];
 
-        if(empty($this->client))
-            $this->client = new \stdClass();
+        if ($this->client === null) {
+            $this->client = [];
+        }
 
-        $this->client->location = (object)$location;
+        $this->client['location'] = $location;
     }
 
     /**
@@ -250,8 +251,8 @@ class Request
             $this->validate();
 
             $response = $this->httpClient->request($this->method, $this->endpoint, [
-                "headers" => $this->headers,
-                "body" => json_encode($this->body)
+                'headers' => $this->headers,
+                'body' => json_encode($this->body),
             ]);
 
             $responseHeaders = $response->getHeaders();
@@ -269,12 +270,12 @@ class Request
     private function buildBody(): void
     {
         $body = [
-            "request" => [
-                "customId" => $this->customId,
-                "query" => $this->query,
-                "options" => $this->options,
-                "client" => $this->client
-            ]
+            'request' => [
+                'customId' => $this->customId,
+                'query' => $this->query,
+                'options' => $this->options,
+                'client' => $this->client,
+            ],
         ];
 
         $this->body = (object)$body;

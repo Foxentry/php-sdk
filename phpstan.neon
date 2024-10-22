@@ -1,0 +1,13 @@
+parameters:
+	level: 8
+	phpVersion: 80100
+
+	tmpDir: %currentWorkingDirectory%/var/tmp/phpstan
+
+	fileExtensions:
+		- php
+		- phpt
+
+	paths:
+		- src
+		- tests

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry\Exception;
 
 /**
@@ -17,5 +19,7 @@ final class ServiceUnavailableException extends FoxentryException
      *
      * @var int
      */
+    // Native typehint missing, because definition needs to match the native Exception class.
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     protected $code = 503;
 }

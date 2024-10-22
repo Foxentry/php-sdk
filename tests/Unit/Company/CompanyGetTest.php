@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\Unit\Location;
+declare(strict_types=1);
+
+namespace Tests\Unit\Company;
 
 use Foxentry\Response;
 use Tests\Base;
@@ -13,21 +15,21 @@ class CompanyGetTest extends Base
     /**
      * Test retrieval of basic data scope by country and registration number.
      */
-    public function testBasicDataScope()
+    public function testBasicDataScope(): void
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -39,21 +41,21 @@ class CompanyGetTest extends Base
     /**
      * Test retrieval of extended data scope by country and registration number.
      */
-    public function testExtendedDataScope()
+    public function testExtendedDataScope(): void
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "extended"
+            'dataScope' => 'extended',
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -65,21 +67,21 @@ class CompanyGetTest extends Base
     /**
      * Test retrieval of full data scope by country and registration number.
      */
-    public function testFullDataScope()
+    public function testFullDataScope(): void
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "full"
+            'dataScope' => 'full',
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()->setOptions($options)->get($query);
+        $response = self::$api->company()->setOptions($options)->get($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -91,24 +93,24 @@ class CompanyGetTest extends Base
     /**
      * Test company data retrieval with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
 
         // Query parameters for company data retrieval.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->get($query);
@@ -124,24 +126,24 @@ class CompanyGetTest extends Base
     /**
      * Test company data retrieval with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for company data retrieval.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->get($query);
 
@@ -156,21 +158,21 @@ class CompanyGetTest extends Base
         /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476"
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic"
+            'dataScope' => 'basic',
         ];
 
         // Perform name validation with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->includeRequestDetails()
             ->get($query);
@@ -180,7 +182,7 @@ class CompanyGetTest extends Base
 
         $this->assertObjectHasProperty('query', $result);
 
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
             ->get($query);
 
