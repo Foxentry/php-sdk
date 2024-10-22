@@ -19,15 +19,15 @@ class LocationLocalizeTest extends Base
     {
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403,
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false,
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization.
@@ -52,15 +52,15 @@ class LocationLocalizeTest extends Base
 
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403,
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false,
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization.
@@ -86,22 +86,22 @@ class LocationLocalizeTest extends Base
     {
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403,
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false,
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization with client information.
         $response = self::$api->location()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->localize($query);
 

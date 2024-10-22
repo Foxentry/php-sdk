@@ -19,13 +19,13 @@ class CompanyGetTest extends Base
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval.
@@ -45,13 +45,13 @@ class CompanyGetTest extends Base
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "extended",
+            'dataScope' => 'extended',
         ];
 
         // Perform company data retrieval.
@@ -71,13 +71,13 @@ class CompanyGetTest extends Base
     {
         // Query parameters for retrieving company data by country and registration number.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "full",
+            'dataScope' => 'full',
         ];
 
         // Perform company data retrieval.
@@ -100,13 +100,13 @@ class CompanyGetTest extends Base
 
         // Query parameters for company data retrieval.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval.
@@ -130,20 +130,20 @@ class CompanyGetTest extends Base
     {
         // Query parameters for company data retrieval.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform company data retrieval with client information.
         $response = self::$api->company()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->get($query);
 
@@ -162,13 +162,13 @@ class CompanyGetTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "country" => "CZ",
-            "registrationNumber" => "04997476",
+            'country' => 'CZ',
+            'registrationNumber' => '04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform name validation with client information.

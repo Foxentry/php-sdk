@@ -42,7 +42,7 @@ class BaseResource
      */
     public function includeRequestDetails(bool $value = true): static
     {
-        $this->request->setHeader("Foxentry-Include-Request-Details", $value);
+        $this->request->setHeader('Foxentry-Include-Request-Details', $value);
         return $this;
     }
 
@@ -149,6 +149,6 @@ class BaseResource
         $class = strtolower($class);
 
         $method = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 4)[3]['function'];
-        return "$class/$method";
+        return $class . '/' . $method;
     }
 }

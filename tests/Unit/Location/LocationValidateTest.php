@@ -19,16 +19,16 @@ class LocationValidateTest extends Base
     {
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Thámova 137/16",
-            "city" => "Praha",
-            "zip" => "186 00",
+            'streetWithNumber' => 'Thámova 137/16',
+            'city' => 'Praha',
+            'zip' => '186 00',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation.
@@ -39,7 +39,7 @@ class LocationValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
+        $this->assertEquals('valid', $result->proposal);
         $this->assertNotEmpty($result->data);
     }
 
@@ -50,16 +50,16 @@ class LocationValidateTest extends Base
     {
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Thámova 123456789",
-            "city" => "Parharlin",
-            "zip" => "457545754",
+            'streetWithNumber' => 'Thámova 123456789',
+            'city' => 'Parharlin',
+            'zip' => '457545754',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation.
@@ -70,7 +70,7 @@ class LocationValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals('invalid', $result->proposal);
         $this->assertNotEmpty($result->errors);
     }
 
@@ -81,16 +81,16 @@ class LocationValidateTest extends Base
     {
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Thámova 137",
-            "city" => "Praha",
-            "zip" => "18600",
+            'streetWithNumber' => 'Thámova 137',
+            'city' => 'Praha',
+            'zip' => '18600',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation.
@@ -101,7 +101,7 @@ class LocationValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
+        $this->assertEquals('invalidWithCorrection', $result->proposal);
         $this->assertNotEmpty($response->getResultCorrected());
     }
 
@@ -112,16 +112,16 @@ class LocationValidateTest extends Base
     {
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Olšanská 2898/4",
-            "city" => "Praha",
-            "zip" => "130 00",
+            'streetWithNumber' => 'Olšanská 2898/4',
+            'city' => 'Praha',
+            'zip' => '130 00',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation.
@@ -132,7 +132,7 @@ class LocationValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithSuggestion", $result->proposal);
+        $this->assertEquals('invalidWithSuggestion', $result->proposal);
         $this->assertNotEmpty($response->getSuggestions());
     }
 
@@ -146,16 +146,16 @@ class LocationValidateTest extends Base
 
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Thámova 123456789",
-            "city" => "Parharlin",
-            "zip" => "457545754",
+            'streetWithNumber' => 'Thámova 123456789',
+            'city' => 'Parharlin',
+            'zip' => '457545754',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation.
@@ -179,23 +179,23 @@ class LocationValidateTest extends Base
     {
         // Query parameters for validating location data.
         $query = [
-            "streetWithNumber" => "Thámova 137/16",
-            "city" => "Praha",
-            "zip" => "186 00",
+            'streetWithNumber' => 'Thámova 137/16',
+            'city' => 'Praha',
+            'zip' => '186 00',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "cityFormat" => "minimal",
-            "zipFormat" => true,
+            'dataScope' => 'basic',
+            'cityFormat' => 'minimal',
+            'zipFormat' => true,
         ];
 
         // Perform location data validation with client information.
         $response = self::$api->location()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->validate($query);
 

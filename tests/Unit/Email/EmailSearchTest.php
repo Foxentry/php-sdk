@@ -24,7 +24,7 @@ class EmailSearchTest extends Base
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 5,
+            'resultsLimit' => 5,
         ];
 
         // Perform email search.
@@ -46,12 +46,12 @@ class EmailSearchTest extends Base
     {
         // Query that will be sent to the API for validation.
         $query = [
-            "value" => "info@",
+            'value' => 'info@',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 5,
+            'resultsLimit' => 5,
         ];
 
         // Perform email validation.

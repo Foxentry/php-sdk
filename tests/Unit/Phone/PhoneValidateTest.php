@@ -19,12 +19,12 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456",
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
@@ -35,7 +35,7 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertTrue($result->isValid);
-        self::assertEquals("valid", $result->proposal);
+        self::assertEquals('valid', $result->proposal);
         self::assertNotEmpty($result->data);
     }
 
@@ -46,12 +46,12 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+42060712345",
+            'numberWithPrefix' => '+42060712345',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
@@ -62,7 +62,7 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertFalse($result->isValid);
-        self::assertEquals("invalid", $result->proposal);
+        self::assertEquals('invalid', $result->proposal);
         self::assertNotEmpty($result->errors);
     }
 
@@ -73,13 +73,13 @@ class PhoneValidateTest extends Base
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
-            "prefix" => "+48",
-            "number" => "728984101",
+            'prefix' => '+48',
+            'number' => '728984101',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
@@ -90,7 +90,7 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertTrue($result->isValid);
-        self::assertEquals("validWithSuggestion", $result->proposal);
+        self::assertEquals('validWithSuggestion', $result->proposal);
         self::assertNotEmpty($response->getSuggestions());
     }
 
@@ -101,13 +101,13 @@ class PhoneValidateTest extends Base
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
-            "prefix" => "+421",
-            "number" => "607123456",
+            'prefix' => '+421',
+            'number' => '607123456',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
@@ -118,7 +118,7 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertFalse($result->isValid);
-        self::assertEquals("invalidWithCorrection", $result->proposal);
+        self::assertEquals('invalidWithCorrection', $result->proposal);
         self::assertNotEmpty($response->getResultCorrected());
     }
 
@@ -132,7 +132,7 @@ class PhoneValidateTest extends Base
 
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456",
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform phone number validation.
@@ -155,13 +155,13 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456",
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform phone number validation with client information.
         $response = self::$api->phone()
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->validate($query);
 
@@ -180,7 +180,7 @@ class PhoneValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456",
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform name validation with client information.

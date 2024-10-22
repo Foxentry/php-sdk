@@ -41,7 +41,7 @@ final class Email extends BaseResource
      */
     public function validate(string|array $query): Response
     {
-        $query = is_array($query) ? $query : ["email" => $query];
+        $query = is_array($query) ? $query : ['email' => $query];
         return $this->sendRequest($query);
     }
 
@@ -64,7 +64,7 @@ final class Email extends BaseResource
      */
     public function search(string|array $query): Response
     {
-        $query = is_array($query) ? $query : ["value" => $query];
+        $query = is_array($query) ? $query : ['value' => $query];
         return $this->sendRequest($query);
     }
 

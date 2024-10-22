@@ -18,7 +18,7 @@ use Foxentry\Resource\Phone;
 class ApiClient
 {
     protected string $apiKey;
-    protected string $apiVersion = "2.0";
+    protected string $apiVersion = '2.0';
 
     /**
      * ApiClient constructor.

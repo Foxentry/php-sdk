@@ -19,13 +19,13 @@ class CompanySearchTest extends Base
     {
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web",
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform company name search.
@@ -47,13 +47,13 @@ class CompanySearchTest extends Base
     {
         // Input parameters for registration number search.
         $query = [
-            "type" => "registrationNumber",
-            "value" => "10",
+            'type' => 'registrationNumber',
+            'value' => '10',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform registration number search.
@@ -75,13 +75,13 @@ class CompanySearchTest extends Base
     {
         // Input parameters for tax number search.
         $query = [
-            "type" => "taxNumber",
-            "value" => "10",
+            'type' => 'taxNumber',
+            'value' => '10',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform tax number search.
@@ -103,13 +103,13 @@ class CompanySearchTest extends Base
     {
         // Input parameters for VAT number search.
         $query = [
-            "type" => "vatNumber",
-            "value" => "CZ04997476",
+            'type' => 'vatNumber',
+            'value' => 'CZ04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform VAT number search.
@@ -134,13 +134,13 @@ class CompanySearchTest extends Base
 
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web",
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform company data search.
@@ -166,20 +166,20 @@ class CompanySearchTest extends Base
     {
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web",
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform company data search with client information.
         $response = self::$api->company()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->search($query);
 

@@ -28,34 +28,34 @@ class FoxentryException extends \Exception
             // Switch based on the status code of the response
             switch ($statusCode) {
                 case 400:
-                    $foxentryException = new BadRequestException("Request was invalid or cannot be processed.");
+                    $foxentryException = new BadRequestException('Request was invalid or cannot be processed.');
                     break;
                 case 401:
-                    $foxentryException = new UnauthorizedException("Unauthorized. Did you set your API key?");
+                    $foxentryException = new UnauthorizedException('Unauthorized. Did you set your API key?');
                     break;
                 case 402:
-                    $foxentryException = new PaymentRequiredException("Payment is required to access this resource.");
+                    $foxentryException = new PaymentRequiredException('Payment is required to access this resource.');
                     break;
                 case 403:
-                    $foxentryException = new ForbiddenException("Forbidden.");
+                    $foxentryException = new ForbiddenException('Forbidden.');
                     break;
                 case 404:
-                    $foxentryException = new NotFoundException("Resource or endpoint requested is not found on the server.");
+                    $foxentryException = new NotFoundException('Resource or endpoint requested is not found on the server.');
                     break;
                 case 429:
                     $foxentryException = new TooManyRequestsException(
-                        "Too many requests have been made in the given time frame or the daily limit has been reached."
+                        'Too many requests have been made in the given time frame or the daily limit has been reached.'
                     );
                     break;
                 case 500:
-                    $foxentryException = new ServerErrorException("Internal server error.");
+                    $foxentryException = new ServerErrorException('Internal server error.');
                     break;
                 case 503:
-                    $foxentryException = new ServiceUnavailableException("The server is temporarily unable to handle the request");
+                    $foxentryException = new ServiceUnavailableException('The server is temporarily unable to handle the request');
                     break;
                 default:
                     // Handle the rest with generic FoxentryException class
-                    $foxentryException = new self("Request exception: " . $e->getMessage(), $statusCode);
+                    $foxentryException = new self('Request exception: ' . $e->getMessage(), $statusCode);
                     break;
             }
 
@@ -63,7 +63,7 @@ class FoxentryException extends \Exception
         }
 
         // Return a generic exception with the original exception message
-        return new self("Exception: " . $e->getMessage());
+        return new self('Exception: ' . $e->getMessage());
     }
 
     public function setResponse(?ResponseInterface $response): self

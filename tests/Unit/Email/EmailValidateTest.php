@@ -18,11 +18,11 @@ class EmailValidateTest extends Base
     public function testValid(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "info@foxentry.com";
+        $email = 'info@foxentry.com';
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -33,7 +33,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
+        $this->assertEquals('valid', $result->proposal);
         $this->assertNotEmpty($result->data);
     }
 
@@ -43,11 +43,11 @@ class EmailValidateTest extends Base
     public function testInvalid(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "invalidUser@foxentry.com";
+        $email = 'invalidUser@foxentry.com';
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -58,7 +58,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals('invalid', $result->proposal);
         $this->assertNotEmpty($result->errors);
     }
 
@@ -68,11 +68,11 @@ class EmailValidateTest extends Base
     public function testInvalidWithSuggestion(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "info@gmali.com";
+        $email = 'info@gmali.com';
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -83,7 +83,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithSuggestion", $result->proposal);
+        $this->assertEquals('invalidWithSuggestion', $result->proposal);
         $this->assertNotEmpty($response->getSuggestions());
     }
 
@@ -93,11 +93,11 @@ class EmailValidateTest extends Base
     public function testInvalidWithCorrection(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "info@foxentry,com"; // Notice the "," instead of "." before the com
+        $email = 'info@foxentry,com'; // Notice the "," instead of "." before the com
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -108,7 +108,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
+        $this->assertEquals('invalidWithCorrection', $result->proposal);
         $this->assertNotEmpty($response->getResultCorrected());
     }
 
@@ -118,11 +118,11 @@ class EmailValidateTest extends Base
     public function testInvalidWithPartialCorrection(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "infogmail.com";
+        $email = 'infogmail.com';
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -133,7 +133,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithPartialCorrection", $result->proposal);
+        $this->assertEquals('invalidWithPartialCorrection', $result->proposal);
         $this->assertNotEmpty($response->getResultCorrected());
     }
 
@@ -143,11 +143,11 @@ class EmailValidateTest extends Base
     public function testDisallowedDisposable(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "rasini3451@naymedia.com";
+        $email = 'rasini3451@naymedia.com';
 
         // Options that will be sent within the request.
         $options = [
-            "acceptDisposableEmails" => false,
+            'acceptDisposableEmails' => false,
         ];
 
         // Perform email validation.
@@ -158,7 +158,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals('invalid', $result->proposal);
         $this->assertTrue($result->flags->isDisposableEmailAddress);
         $this->assertNotEmpty($result->errors);
     }
@@ -169,11 +169,11 @@ class EmailValidateTest extends Base
     public function testDisallowedFreemails(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "info@gmail.com";
+        $email = 'info@gmail.com';
 
         // Options that will be sent within the request.
         $options = [
-            "acceptFreemails" => false,
+            'acceptFreemails' => false,
         ];
 
         // Perform email validation.
@@ -184,7 +184,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals('invalid', $result->proposal);
         $this->assertTrue($result->flags->isFreemail);
         $this->assertNotEmpty($result->errors);
     }
@@ -223,8 +223,8 @@ class EmailValidateTest extends Base
 
         // Perform email validation with client information.
         $response = self::$api->email()
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->validate($email);
 
@@ -243,12 +243,12 @@ class EmailValidateTest extends Base
     {
         // Query that will be sent to the API for validation.
         $query = [
-            "email" => "info@foxentry.com",
+            'email' => 'info@foxentry.com',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation.
@@ -265,11 +265,11 @@ class EmailValidateTest extends Base
     public function testResponseHeaders(): void
     {
         // Email that will be sent to the API for validation.
-        $email = "info@foxentry.com";
+        $email = 'info@foxentry.com';
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended",
+            'validationType' => 'extended',
         ];
 
         // Perform email validation and get headers of the response.
@@ -295,7 +295,7 @@ class EmailValidateTest extends Base
     public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
-         $email = "info@foxentry.com";
+         $email = 'info@foxentry.com';
 
         // Perform name validation with client information.
         $response = self::$api->email()

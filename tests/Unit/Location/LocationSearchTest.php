@@ -19,13 +19,13 @@ class LocationSearchTest extends Base
     {
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha",
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform street search.
@@ -47,13 +47,13 @@ class LocationSearchTest extends Base
     {
         // Input parameters for city search.
         $query = [
-            "type" => "city",
-            "value" => "pra",
+            'type' => 'city',
+            'value' => 'pra',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform city search.
@@ -75,13 +75,13 @@ class LocationSearchTest extends Base
     {
         // Input parameters for street with number search.
         $query = [
-            "type" => "streetWithNumber",
-            "value" => "Jeseniova 56",
+            'type' => 'streetWithNumber',
+            'value' => 'Jeseniova 56',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform street with number search.
@@ -103,13 +103,13 @@ class LocationSearchTest extends Base
     {
         // Input parameters for ZIP code search.
         $query = [
-            "type" => "zip",
-            "value" => "1",
+            'type' => 'zip',
+            'value' => '1',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform ZIP code search.
@@ -131,13 +131,13 @@ class LocationSearchTest extends Base
     {
         // Input parameters for full location search.
         $query = [
-            "type" => "full",
-            "value" => "Jeseniova Praha",
+            'type' => 'full',
+            'value' => 'Jeseniova Praha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform full location search.
@@ -162,13 +162,13 @@ class LocationSearchTest extends Base
 
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha",
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform location data validation.
@@ -194,20 +194,20 @@ class LocationSearchTest extends Base
     {
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha",
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
+            'resultsLimit' => 10,
         ];
 
         // Perform location data validation with client information.
         $response = self::$api->location()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->search($query);
 

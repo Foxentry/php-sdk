@@ -19,12 +19,12 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel",
+            'name' => 'Pavel',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform name validation.
@@ -35,7 +35,7 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertTrue($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
+        $this->assertEquals('valid', $result->proposal);
         $this->assertNotEmpty($result->data);
     }
 
@@ -46,13 +46,13 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Paeeewas",
+            'name' => 'Paeeewas',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "validationDepth" => "strict",
+            'dataScope' => 'basic',
+            'validationDepth' => 'strict',
         ];
 
         // Perform name validation.
@@ -63,7 +63,7 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals('invalid', $result->proposal);
         $this->assertNotEmpty($result->errors);
     }
 
@@ -74,13 +74,13 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Palve",
+            'name' => 'Palve',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
-            "validationDepth" => "strict",
+            'dataScope' => 'basic',
+            'validationDepth' => 'strict',
         ];
 
         // Perform name validation.
@@ -91,7 +91,7 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
+        $this->assertEquals('invalidWithCorrection', $result->proposal);
         $this->assertNotEmpty($response->getResultCorrected());
     }
 
@@ -102,12 +102,12 @@ class NameValidateTest extends Base
     {
         // Full name that will be sent to the API for validation.
         $query = [
-            "nameSurname" => "Pavel Novák",
+            'nameSurname' => 'Pavel Novák',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "full",
+            'dataScope' => 'full',
         ];
 
         // Perform full name validation.
@@ -118,7 +118,7 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
+        $this->assertEquals('valid', $result->proposal);
         $this->assertNotEmpty($result->details);
     }
 
@@ -132,7 +132,7 @@ class NameValidateTest extends Base
 
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel",
+            'name' => 'Pavel',
         ];
 
         // Perform name validation.
@@ -155,19 +155,19 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel",
+            'name' => 'Pavel',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform name validation with client information.
         $response = self::$api->name()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->validate($query);
 
@@ -186,12 +186,12 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "name" => "Pavel",
+            'name' => 'Pavel',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "dataScope" => "basic",
+            'dataScope' => 'basic',
         ];
 
         // Perform name validation with client information.

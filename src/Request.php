@@ -27,13 +27,13 @@ class Request
      * The base URI for the Foxentry API.
      *
      */
-    private string $baseUri = "https://api.foxentry.com/";
+    private string $baseUri = 'https://api.foxentry.com/';
 
     /**
      * The HTTP request method (e.g., "GET" or "POST").
      *
      */
-    private string $method = "POST";
+    private string $method = 'POST';
 
     /**
      * The HTTP headers for the API request.
@@ -41,10 +41,10 @@ class Request
      * @var array<string, mixed>
      */
     private array $headers = [
-        "Foxentry-Include-Request-Details" => false,
-        "Content-Type" => "application/json",
-        "Accept" => "application/json",
-        "User-Agent" => "FoxentrySdk (PHP/2.3.0; ApiReference/2.0)",
+        'Foxentry-Include-Request-Details' => false,
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json',
+        'User-Agent' => 'FoxentrySdk (PHP/2.3.0; ApiReference/2.0)',
     ];
 
     /**
@@ -100,7 +100,7 @@ class Request
 
     public function __construct(string $apiVersion, ?string $apiKey)
     {
-        $this->setHeader("Api-Version", $apiVersion);
+        $this->setHeader('Api-Version', $apiVersion);
 
         if ($apiKey) {
             $this->setAuth($apiKey);
@@ -119,7 +119,7 @@ class Request
     public function setAuth(string $apiKey): void
     {
         $this->apiKey = $apiKey;
-        $this->setHeader("Authorization", "Bearer $this->apiKey");
+        $this->setHeader('Authorization', sprintf('Bearer %s', $this->apiKey));
     }
 
     /**
@@ -181,7 +181,7 @@ class Request
     public function setClientIP(string $ip): void
     {
         if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-            throw new \InvalidArgumentException("The specified IP address is not valid.");
+            throw new \InvalidArgumentException('The specified IP address is not valid.');
         }
 
         if ($this->client === null) {
@@ -199,7 +199,7 @@ class Request
     public function setClientCountry(string $country): void
     {
         if (strlen($country) != 2) {
-            throw new \InvalidArgumentException("The provided country code does not conform to the ISO-3166-1 alpha-2 format.");
+            throw new \InvalidArgumentException('The provided country code does not conform to the ISO-3166-1 alpha-2 format.');
         }
 
         if ($this->client === null) {
@@ -218,8 +218,8 @@ class Request
     public function setClientLocation(float $lat, float $lon): void
     {
         $location = [
-            "lat" => $lat,
-            "lon" => $lon,
+            'lat' => $lat,
+            'lon' => $lon,
         ];
 
         if ($this->client === null) {
@@ -251,8 +251,8 @@ class Request
             $this->validate();
 
             $response = $this->httpClient->request($this->method, $this->endpoint, [
-                "headers" => $this->headers,
-                "body" => json_encode($this->body),
+                'headers' => $this->headers,
+                'body' => json_encode($this->body),
             ]);
 
             $responseHeaders = $response->getHeaders();
@@ -270,11 +270,11 @@ class Request
     private function buildBody(): void
     {
         $body = [
-            "request" => [
-                "customId" => $this->customId,
-                "query" => $this->query,
-                "options" => $this->options,
-                "client" => $this->client,
+            'request' => [
+                'customId' => $this->customId,
+                'query' => $this->query,
+                'options' => $this->options,
+                'client' => $this->client,
             ],
         ];
 

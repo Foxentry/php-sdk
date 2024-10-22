@@ -50,6 +50,8 @@
         </properties>
     </rule>
 
+    <rule ref="Squiz.Strings.DoubleQuoteUsage" />
+
     <!-- Paths to check -->
     <file>src</file>
     <file>tests</file>
