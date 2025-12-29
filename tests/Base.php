@@ -7,14 +7,18 @@ use PHPUnit\Framework\TestCase;
 class Base extends TestCase
 {
     /**
-     * @var ApiClient $api Foxentry API client.
+     * @var ?ApiClient $api Foxentry API client.
      */
-    protected ApiClient $api;
+    protected ?ApiClient $api;
 
-    public function __construct(string $name)
+    public function setUp(): void
     {
-        parent::__construct($name);
         $this->assertNotEmpty($_ENV['API_KEY'], 'You didn\'t set your API key in .env file');
         $this->api = new ApiClient($_ENV['API_KEY']);
+    }
+
+    public function tearDown(): void
+    {
+        $this->api = null;
     }
 }

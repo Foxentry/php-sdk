@@ -56,7 +56,7 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
+        $this->assertEquals("invalidWithPartialCorrection", $result->proposal);
         $this->assertNotEmpty($result->errors);
     }
 
@@ -81,8 +81,8 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithSuggestion", $result->proposal);
-        $this->assertNotEmpty($response->getSuggestions());
+        $this->assertEquals("invalidWithPartialCorrection", $result->proposal);
+        $this->assertNotEmpty($response->getResultCorrected());
     }
 
     /**

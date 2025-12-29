@@ -89,8 +89,8 @@ class NameValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
-        $this->assertNotEmpty($response->getResultCorrected());
+        $this->assertEquals("invalidWithSuggestion", $result->proposal);
+        $this->assertNotEmpty($response->getSuggestions());
     }
 
     /**
