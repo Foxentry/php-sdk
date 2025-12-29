@@ -2,7 +2,7 @@
     "name": "foxentry/php-api-client",
     "description": "Foxentry.com PHP API client",
     "keywords": ["Foxentry", "Foxentry.com"],
-    "license": "GPL-3.0-or-later",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dominik Hošic",
