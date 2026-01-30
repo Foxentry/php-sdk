@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,21 +15,21 @@ class LocationSearchTest extends Base
     /**
      * Test valid street search.
      */
-    public function testSearchStreet()
+    public function testSearchStreet(): void
     {
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha"
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform street search.
-        $response = $this->api->location()->setOptions($options)->search($query);
+        $response = self::$api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -41,21 +43,21 @@ class LocationSearchTest extends Base
     /**
      * Test valid city search.
      */
-    public function testSearchCity()
+    public function testSearchCity(): void
     {
         // Input parameters for city search.
         $query = [
-            "type" => "city",
-            "value" => "pra"
+            'type' => 'city',
+            'value' => 'pra',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform city search.
-        $response = $this->api->location()->setOptions($options)->search($query);
+        $response = self::$api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -69,21 +71,21 @@ class LocationSearchTest extends Base
     /**
      * Test valid street with number search.
      */
-    public function testSearchStreetWithNumber()
+    public function testSearchStreetWithNumber(): void
     {
         // Input parameters for street with number search.
         $query = [
-            "type" => "streetWithNumber",
-            "value" => "Jeseniova 56"
+            'type' => 'streetWithNumber',
+            'value' => 'Jeseniova 56',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform street with number search.
-        $response = $this->api->location()->setOptions($options)->search($query);
+        $response = self::$api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -97,21 +99,21 @@ class LocationSearchTest extends Base
     /**
      * Test valid ZIP code search.
      */
-    public function testSearchZip()
+    public function testSearchZip(): void
     {
         // Input parameters for ZIP code search.
         $query = [
-            "type" => "zip",
-            "value" => "1"
+            'type' => 'zip',
+            'value' => '1',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform ZIP code search.
-        $response = $this->api->location()->setOptions($options)->search($query);
+        $response = self::$api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -125,21 +127,21 @@ class LocationSearchTest extends Base
     /**
      * Test valid full address search.
      */
-    public function testSearchFull()
+    public function testSearchFull(): void
     {
         // Input parameters for full location search.
         $query = [
-            "type" => "full",
-            "value" => "Jeseniova Praha"
+            'type' => 'full',
+            'value' => 'Jeseniova Praha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform full location search.
-        $response = $this->api->location()->setOptions($options)->search($query);
+        $response = self::$api->location()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -153,24 +155,24 @@ class LocationSearchTest extends Base
     /**
      * Test location data validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
 
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha"
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform location data validation.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->search($query);
@@ -188,24 +190,24 @@ class LocationSearchTest extends Base
     /**
      * Test location data validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Input parameters for street search.
         $query = [
-            "type" => "street",
-            "value" => "tha"
+            'type' => 'street',
+            'value' => 'tha',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform location data validation with client information.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->search($query);
 

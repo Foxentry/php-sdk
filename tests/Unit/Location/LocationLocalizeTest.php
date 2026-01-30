@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Location;
 
 use Foxentry\Response;
@@ -13,23 +15,23 @@ class LocationLocalizeTest extends Base
     /**
      * Test localization of location data based on coordinates.
      */
-    public function testLocalizationResults()
+    public function testLocalizationResults(): void
     {
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization.
-        $response = $this->api->location()->setOptions($options)->localize($query);
+        $response = self::$api->location()->setOptions($options)->localize($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -43,26 +45,26 @@ class LocationLocalizeTest extends Base
     /**
      * Test location data localization with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
 
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->localize($query);
@@ -80,26 +82,26 @@ class LocationLocalizeTest extends Base
     /**
      * Test location data localization with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Query parameters for localizing location data.
         $query = [
-            "lat" => 50.0919999,
-            "lon" => 14.4527403
+            'lat' => 50.0919999,
+            'lon' => 14.4527403,
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10,
-            "radius" => 15,
-            "acceptNearest" => false
+            'resultsLimit' => 10,
+            'radius' => 15,
+            'acceptNearest' => false,
         ];
 
         // Perform location data localization with client information.
-        $response = $this->api->location()
+        $response = self::$api->location()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->localize($query);
 

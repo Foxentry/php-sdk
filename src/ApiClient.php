@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foxentry;
 
 use Foxentry\Resource\Company;
@@ -13,17 +15,18 @@ use Foxentry\Resource\Phone;
  *
  * @package Foxentry
  */
-class ApiClient {
-
+class ApiClient
+{
     protected string $apiKey;
-    protected string $apiVersion = "2.0";
+    protected string $apiVersion = '2.0';
 
     /**
      * ApiClient constructor.
      *
      * @param string|null $apiKey The API key for authentication
      */
-    public function __construct( ?string $apiKey = null ) {
+    public function __construct(?string $apiKey = null)
+    {
         if ($apiKey !== null) {
             $this->setAuth($apiKey);
         }
@@ -35,7 +38,8 @@ class ApiClient {
      *
      * @param string $apiKey The API key to set
      */
-    public function setAuth( string $apiKey ): void {
+    public function setAuth(string $apiKey): void
+    {
         $this->apiKey = $apiKey;
     }
 
@@ -44,34 +48,39 @@ class ApiClient {
      *
      * @param string $version The API version to set
      */
-    public function setApiVersion( string $version ): void {
+    public function setApiVersion(string $version): void
+    {
         $this->apiVersion = $version;
     }
 
 
-    function company() {
+    public function company(): Company
+    {
         $request = new Request($this->apiVersion, $this->apiKey);
-        return new Company( $request );
+        return new Company($request);
     }
 
-    function email() {
+    public function email(): Email
+    {
         $request = new Request($this->apiVersion, $this->apiKey);
-        return new Email( $request );
+        return new Email($request);
     }
 
-    function location() {
+    public function location(): Location
+    {
         $request = new Request($this->apiVersion, $this->apiKey);
-        return new Location( $request );
+        return new Location($request);
     }
 
-    function name() {
+    public function name(): Name
+    {
         $request = new Request($this->apiVersion, $this->apiKey);
-        return new Name( $request );
+        return new Name($request);
     }
 
-    function phone() {
+    public function phone(): Phone
+    {
         $request = new Request($this->apiVersion, $this->apiKey);
-        return new Phone( $request );
+        return new Phone($request);
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Company;
 
 use Foxentry\Response;
@@ -13,21 +15,21 @@ class CompanySearchTest extends Base
     /**
      * Test valid company name search.
      */
-    public function testSearchName()
+    public function testSearchName(): void
     {
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web"
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform company name search.
-        $response = $this->api->company()->setOptions($options)->search($query);
+        $response = self::$api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -41,21 +43,21 @@ class CompanySearchTest extends Base
     /**
      * Test valid registration number search.
      */
-    public function testSearchRegistrationNumber()
+    public function testSearchRegistrationNumber(): void
     {
         // Input parameters for registration number search.
         $query = [
-            "type" => "registrationNumber",
-            "value" => "10"
+            'type' => 'registrationNumber',
+            'value' => '10',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform registration number search.
-        $response = $this->api->company()->setOptions($options)->search($query);
+        $response = self::$api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -69,21 +71,21 @@ class CompanySearchTest extends Base
     /**
      * Test valid tax number search.
      */
-    public function testSearchTaxNumber()
+    public function testSearchTaxNumber(): void
     {
         // Input parameters for tax number search.
         $query = [
-            "type" => "taxNumber",
-            "value" => "10"
+            'type' => 'taxNumber',
+            'value' => '10',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform tax number search.
-        $response = $this->api->company()->setOptions($options)->search($query);
+        $response = self::$api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -97,21 +99,21 @@ class CompanySearchTest extends Base
     /**
      * Test valid VAT number search.
      */
-    public function testSearchVatNumber()
+    public function testSearchVatNumber(): void
     {
         // Input parameters for VAT number search.
         $query = [
-            "type" => "vatNumber",
-            "value" => "CZ04997476"
+            'type' => 'vatNumber',
+            'value' => 'CZ04997476',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform VAT number search.
-        $response = $this->api->company()->setOptions($options)->search($query);
+        $response = self::$api->company()->setOptions($options)->search($query);
         $result = $response->getResult();
 
         // Assertions.
@@ -125,24 +127,24 @@ class CompanySearchTest extends Base
     /**
      * Test company data search with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'MyCustomID';
 
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web"
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform company data search.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setCustomId($customRequestID)
             ->setOptions($options)
             ->search($query);
@@ -160,24 +162,24 @@ class CompanySearchTest extends Base
     /**
      * Test company data search with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Input parameters for company name search.
         $query = [
-            "type" => "name",
-            "value" => "Web"
+            'type' => 'name',
+            'value' => 'Web',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "resultsLimit" => 10
+            'resultsLimit' => 10,
         ];
 
         // Perform company data search with client information.
-        $response = $this->api->company()
+        $response = self::$api->company()
             ->setOptions($options)
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->search($query);
 

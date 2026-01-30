@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Phone;
 
 use Foxentry\Response;
@@ -13,189 +15,189 @@ class PhoneValidateTest extends Base
     /**
      * Test valid phone number validation.
      */
-    public function testValid()
+    public function testValid(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
-        $this->assertEquals("valid", $result->proposal);
-        $this->assertNotEmpty($result->data);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
+        self::assertEquals('valid', $result->proposal);
+        self::assertNotEmpty($result->data);
     }
 
     /**
      * Test invalid phone number.
      */
-    public function testInvalid()
+    public function testInvalid(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+42060712345"
+            'numberWithPrefix' => '+42060712345',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertFalse($result->isValid);
-        $this->assertEquals("invalid", $result->proposal);
-        $this->assertNotEmpty($result->errors);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertFalse($result->isValid);
+        self::assertEquals('invalid', $result->proposal);
+        self::assertNotEmpty($result->errors);
     }
 
     /**
      * Test valid phone number with suggestion.
      */
-    public function testValidWithSuggestion()
+    public function testValidWithSuggestion(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
-            "prefix" => "+48",
-            "number" => "728984101"
+            'prefix' => '+48',
+            'number' => '728984101',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
-        $this->assertEquals("validWithSuggestion", $result->proposal);
-        $this->assertNotEmpty($response->getSuggestions());
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
+        self::assertEquals('validWithSuggestion', $result->proposal);
+        self::assertNotEmpty($response->getSuggestions());
     }
 
     /**
      * Test invalid phone number with correction.
      */
-    public function testInvalidWithCorrection()
+    public function testInvalidWithCorrection(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
-            "prefix" => "+421",
-            "number" => "607123456"
+            'prefix' => '+421',
+            'number' => '607123456',
         ];
 
         // Options that will be sent within the request.
         $options = [
-            "validationType" => "extended"
+            'validationType' => 'extended',
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()->setOptions($options)->validate($query);
+        $response = self::$api->phone()->setOptions($options)->validate($query);
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertFalse($result->isValid);
-        $this->assertEquals("invalidWithCorrection", $result->proposal);
-        $this->assertNotEmpty($response->getResultCorrected());
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertFalse($result->isValid);
+        self::assertEquals('invalidWithCorrection', $result->proposal);
+        self::assertNotEmpty($response->getResultCorrected());
     }
 
     /**
      * Test phone number validation with custom ID.
      */
-    public function testWithCustomId()
+    public function testWithCustomId(): void
     {
         // Custom ID to identify the request.
         $customRequestID = 'orderPhoneValidation';
 
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform phone number validation.
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->setCustomId($customRequestID)
             ->validate($query);
 
         $request = $response->getRequest();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertNotEmpty($request->customId);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertNotEmpty($request->customId);
     }
 
     /**
      * Test phone number validation with client information.
      */
-    public function testWithClient()
+    public function testWithClient(): void
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform phone number validation with client information.
-        $response = $this->api->phone()
-            ->setClientCountry("CZ")
-            ->setClientIP("127.0.0.1")
+        $response = self::$api->phone()
+            ->setClientCountry('CZ')
+            ->setClientIP('127.0.0.1')
             ->setClientLocation(50.073658, 14.418540)
             ->validate($query);
 
         $result = $response->getResult();
 
         // Assertions.
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(200, $response->getStatus());
-        $this->assertTrue($result->isValid);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
     }
 
     /**
      * Settings should not persist between calls.
      */
-    public function testInstanceSettings()
+    public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            "numberWithPrefix" => "+420607123456"
+            'numberWithPrefix' => '+420607123456',
         ];
 
         // Perform name validation with client information.
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->includeRequestDetails()
             ->validate($query);
 
         $result = $response->getRequest();
 
 
-        $this->assertObjectHasProperty('query', $result);
+        self::assertObjectHasProperty('query', $result);
 
-        $response = $this->api->phone()
+        $response = self::$api->phone()
             ->validate($query);
 
         $result = $response->getRequest();
 
-        $this->assertObjectNotHasProperty('query', $result);
+        self::assertObjectNotHasProperty('query', $result);
     }
 }
