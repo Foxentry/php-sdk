@@ -43,7 +43,7 @@ class EmailValidateTest extends Base
     public function testInvalid(): void
     {
         // Email that will be sent to the API for validation.
-        $email = 'invalidUser@foxentry.com';
+        $email = 'invaliduser@foxentry.com';
 
         // Options that will be sent within the request.
         $options = [
@@ -68,7 +68,7 @@ class EmailValidateTest extends Base
     public function testInvalidWithSuggestion(): void
     {
         // Email that will be sent to the API for validation.
-        $email = 'info@gmali.com';
+        $email = 'asldikhjaoiwsdhjoiashdoi@gmail.cz';
 
         // Options that will be sent within the request.
         $options = [

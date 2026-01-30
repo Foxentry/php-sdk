@@ -74,7 +74,7 @@ class NameValidateTest extends Base
     {
         // Name that will be sent to the API for validation.
         $query = [
-            'name' => 'Palve',
+            'name' => 'PaVelll',
         ];
 
         // Options that will be sent within the request.
