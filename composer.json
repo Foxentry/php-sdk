@@ -5,17 +5,16 @@
     "Foxentry",
     "Foxentry.com"
   ],
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "authors": [
     {
-      "name": "Dominik Hošic",
-      "email": "hosic@avantro.cz"
-    },
-    {
-      "name": "Vojtěch Sajdl",
-      "email": "sajdl@avantro.cz"
+      "name": "Foxentry",
+      "email": "info@foxentry.com"
     }
   ],
+  "support": {
+    "email": "info@foxentry.com"
+  },
   "require": {
     "php": ">=8.1",
     "guzzlehttp/guzzle": "^7.8",
