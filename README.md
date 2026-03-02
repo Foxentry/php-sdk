@@ -11,7 +11,7 @@ To use the Foxentry API client, you need the following:
 
 -   [A Foxentry account](https://app.foxentry.com/registration)
 -   An Application project created with a generated API key
--   PHP version 7.4 or higher
+-   PHP version 8.1 or higher
 
 ## Installation
 
