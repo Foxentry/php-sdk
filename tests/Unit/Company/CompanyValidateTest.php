@@ -103,7 +103,7 @@ class CompanyValidateTest extends Base
     {
         // Query parameters for validating company data.
         $query = [
-            'registrationNumber' => '0499747',
+            'registrationNumber' => '12345678',
         ];
 
         // Options that will be sent within the request.

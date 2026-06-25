@@ -44,7 +44,7 @@ class Request
         'Foxentry-Include-Request-Details' => false,
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-        'User-Agent' => 'FoxentrySdk (PHP/2.3.0; ApiReference/2.0)',
+        'User-Agent' => 'FoxentrySdk (PHP/3.0.0; ApiReference/2.1)',
     ];
 
     /**

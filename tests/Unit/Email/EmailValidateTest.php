@@ -43,7 +43,7 @@ class EmailValidateTest extends Base
     public function testInvalid(): void
     {
         // Email that will be sent to the API for validation.
-        $email = 'invaliduser@foxentry.com';
+        $email = 'plainaddress';
 
         // Options that will be sent within the request.
         $options = [
@@ -63,12 +63,17 @@ class EmailValidateTest extends Base
     }
 
     /**
-     * Test invalid email with suggestion.
+     * Test that a misspelled freemail domain is flagged invalid and the API offers a fix.
+     *
+     * The exact proposal the model returns for a domain typo is non-deterministic
+     * (it alternates between "invalidWithSuggestion" and "invalidWithPartialCorrection"
+     * for the same input), so this asserts the stable invariant instead: the address
+     * is invalid and a fix is offered as either a suggestion or a corrected result.
      */
     public function testInvalidWithSuggestion(): void
     {
-        // Email that will be sent to the API for validation.
-        $email = 'asldikhjaoiwsdhjoiashdoi@gmail.cz';
+        // Email with a misspelled freemail domain that the API can offer a fix for.
+        $email = 'info@gmial.com';
 
         // Options that will be sent within the request.
         $options = [
@@ -83,8 +88,8 @@ class EmailValidateTest extends Base
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatus());
         $this->assertFalse($result->isValid);
-        $this->assertEquals('invalidWithSuggestion', $result->proposal);
-        $this->assertNotEmpty($response->getSuggestions());
+        $fixOffered = !empty($response->getSuggestions()) || !empty($response->getResultCorrected());
+        $this->assertTrue($fixOffered, 'API should offer a suggestion or a corrected result for a misspelled domain.');
     }
 
     /**

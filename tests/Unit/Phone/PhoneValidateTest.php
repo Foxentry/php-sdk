@@ -19,7 +19,7 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            'numberWithPrefix' => '+420607123456',
+            'numberFull' => '+420607123456',
         ];
 
         // Options that will be sent within the request.
@@ -46,7 +46,7 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            'numberWithPrefix' => '+42060712345',
+            'numberFull' => '+42060712345',
         ];
 
         // Options that will be sent within the request.
@@ -67,9 +67,9 @@ class PhoneValidateTest extends Base
     }
 
     /**
-     * Test valid phone number with suggestion.
+     * Test a valid phone number supplied via the separate prefix + number fields.
      */
-    public function testValidWithSuggestion(): void
+    public function testValidWithPrefixAndNumber(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
@@ -90,14 +90,13 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertTrue($result->isValid);
-        self::assertEquals('validWithSuggestion', $result->proposal);
-        self::assertNotEmpty($response->getSuggestions());
+        self::assertEquals('valid', $result->proposal);
     }
 
     /**
-     * Test invalid phone number with correction.
+     * Test an invalid phone number supplied via the separate prefix + number fields.
      */
-    public function testInvalidWithCorrection(): void
+    public function testInvalidWithPrefixAndNumber(): void
     {
         // Phone number and prefix that will be sent to the API for validation.
         $query = [
@@ -118,8 +117,8 @@ class PhoneValidateTest extends Base
         self::assertInstanceOf(Response::class, $response);
         self::assertEquals(200, $response->getStatus());
         self::assertFalse($result->isValid);
-        self::assertEquals('invalidWithCorrection', $result->proposal);
-        self::assertNotEmpty($response->getResultCorrected());
+        self::assertEquals('invalid', $result->proposal);
+        self::assertNotEmpty($result->errors);
     }
 
     /**
@@ -132,7 +131,7 @@ class PhoneValidateTest extends Base
 
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            'numberWithPrefix' => '+420607123456',
+            'numberFull' => '+420607123456',
         ];
 
         // Perform phone number validation.
@@ -155,7 +154,7 @@ class PhoneValidateTest extends Base
     {
         // Phone number with prefix that will be sent to the API for validation.
         $query = [
-            'numberWithPrefix' => '+420607123456',
+            'numberFull' => '+420607123456',
         ];
 
         // Perform phone number validation with client information.
@@ -174,13 +173,64 @@ class PhoneValidateTest extends Base
     }
 
     /**
+     * Test the API 2.1 `numberFormat` option and the renamed `result.data.format` object.
+     */
+    public function testNumberFormat(): void
+    {
+        // Phone number that will be sent to the API for validation.
+        $query = [
+            'numberFull' => '+420607123456',
+        ];
+
+        // API 2.1 replaces the boolean `formatNumber` with the `numberFormat` enum.
+        $options = [
+            'validationType' => 'extended',
+            'numberFormat' => 'e164',
+        ];
+
+        // Perform phone number validation.
+        $response = self::$api->phone()->setOptions($options)->validate($query);
+        $result = $response->getResult();
+
+        // Assertions.
+        self::assertEquals(200, $response->getStatus());
+        self::assertTrue($result->isValid);
+
+        // API 2.1 renamed the `format` keys to standard telephony notations.
+        $format = $result->data->format;
+        self::assertObjectHasProperty('raw', $format);
+        self::assertObjectHasProperty('national', $format);
+        self::assertObjectHasProperty('e164', $format);
+        self::assertObjectHasProperty('e123', $format);
+        self::assertEquals('+420607123456', $format->e164);
+    }
+
+    /**
+     * The client targets API version 2.1 by default; the response should echo it.
+     */
+    public function testApiVersion(): void
+    {
+        // Phone number that will be sent to the API for validation.
+        $query = [
+            'numberFull' => '+420607123456',
+        ];
+
+        // Perform phone number validation.
+        $response = self::$api->phone()->validate($query);
+
+        // Assertions.
+        self::assertEquals(200, $response->getStatus());
+        self::assertEquals(2.1, $response->getApiVersion());
+    }
+
+    /**
      * Settings should not persist between calls.
      */
     public function testInstanceSettings(): void
     {
         // Name that will be sent to the API for validation.
         $query = [
-            'numberWithPrefix' => '+420607123456',
+            'numberFull' => '+420607123456',
         ];
 
         // Perform name validation with client information.

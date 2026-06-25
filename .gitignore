@@ -3,3 +3,7 @@
 phpunit.xml
 vendor
 var
+CLAUDE.md
+.claude
+.env
+.env.local
